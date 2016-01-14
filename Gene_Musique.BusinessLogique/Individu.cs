@@ -28,6 +28,10 @@ namespace Gene_Musique.BusinessLogique
             this.typeInstrument = randomizerNote.Next(intervalInstrument[0], intervalInstrument[1]);
             this.notation = 5;
         }
+        public int[] GetNotesDeMusique()
+        {
+            return this.notesMusique;
+        }
 
     }
 }

@@ -26,10 +26,8 @@ namespace Gene_Musique.BusinessLogique
         }
         public void generationInitial()
         {
-            int[] intervalNote = new int[2];
-            intervalNote = [30, 100];
-            int[] intervalInstrument = new int[2];
-            intervalInstrument = [0, 127];
+            int[] intervalNote = new int[2] {30, 100};
+            int[] intervalInstrument = new int[2] { 0, 127 };
             for (int i=0;i<NOMBRE_INDIVIDU;i++)
             {
                 population[i] = new Individu(intervalNote, intervalInstrument);

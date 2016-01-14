@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 
 // FIRST COMMIT
 
@@ -12,9 +10,39 @@ namespace Gene_Musique.BusinessLogique
 {
     public class GenerationMusique
     {
-        private int[] population = new int[10];
+        public const int  NOMBRE_INDIVIDU = 10;
+        private int[] intervalNote;
+        private Individu[] population;
         private double crossover;
         private double mutation;
+        private static Random randomizer;
+        public GenerationMusique()
+        {
+            this.population = new Individu[10];
+            generationInitial();
+            
+            
+           
+        }
+        public void generationInitial()
+        {
+            int[] intervalNote = new int[2];
+            intervalNote = [30, 100];
+            int[] intervalInstrument = new int[2];
+            intervalInstrument = [0, 127];
+            for (int i=0;i<NOMBRE_INDIVIDU;i++)
+            {
+                population[i] = new Individu(intervalNote, intervalInstrument);
+            }
+        }
+        public void Accouplement()
+        {
+
+        }
+
     }
+
+
+
 } 
  

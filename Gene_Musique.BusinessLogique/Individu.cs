@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-// FIRST COMMIT
-
 namespace Gene_Musique.BusinessLogique
 {
-    public class Class1
+    public class Individu
     {
+        private int[] notesMusique = new int[16];
+        private int typeInstrument;
+        private int notation;
+
     }
-} 
- 
+}

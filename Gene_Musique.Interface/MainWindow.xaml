@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <Button x:Name="ButtonRecord" Content="Button" HorizontalAlignment="Left" Margin="210,121,0,0" VerticalAlignment="Top" Width="92" Height="41" Click="ButtonRecord_Click"/>
+        <Button x:Name="ButtonNext" Content="Button" HorizontalAlignment="Left" Margin="362,121,0,0" VerticalAlignment="Top" Width="92" Height="41" Click="ButtonNext_Click"/>
+        <Button x:Name="ButtonPlay" Content="Button" HorizontalAlignment="Left" Margin="54,121,0,0" VerticalAlignment="Top" Width="92" Height="41" Click="ButtonPlay_Click"/>
+
     </Grid>
 </Window>

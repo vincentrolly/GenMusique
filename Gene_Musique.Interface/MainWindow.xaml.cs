@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Gene_Musique.BusinessLogique;
 
 namespace Gene_Musique.Interface
 {
@@ -20,9 +22,77 @@ namespace Gene_Musique.Interface
     /// </summary>
     public partial class MainWindow : Window
     {
+        MediaPlayer mplayer;
+        Boolean isPlaying;
+        string strFileName;
+        static int iNumber;
+
+
         public MainWindow()
         {
             InitializeComponent();
+
+            // Initialisation du lecteur
+            mplayer = new MediaPlayer();
+            mplayer.MediaEnded += mplayer_MediaEnded;
+            isPlaying = false;
+
+            GenerationMusique genMusique = new GenerationMusique();
+            genMusique.GetPopulation()[iNumber].
+
+            // On s'abonne à la fermeture du programme pour pouvoir nettoyer le répertoire et les fichiers midi
+            this.Closed += MainWindow_Closed;
+        }
+
+        // On efface les fichiers .mid que l'on avait créé à la fin du programme
+        void MainWindow_Closed(object sender, EventArgs e)
+        {
+            // s'il y a un fichier en cours de lecture on l'arrête 
+            if (isPlaying)
+            {
+                mplayer.Stop();
+                mplayer.Close();
+                isPlaying = false;
+            }
+        }
+
+        // Lancé lorsque le fichier a fini sa lecture, pour le fermer proprement
+        void mplayer_MediaEnded(object sender, EventArgs e)
+        {
+            mplayer.Stop();
+            mplayer.Close();
+            isPlaying = false;
+        }
+
+        private void ButtonRecord_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonPlay_Click(object sender, RoutedEventArgs e)
+        {
+            // s'il y a un fichier en cours de lecture on l'arrête 
+            if (isPlaying)
+            {
+                mplayer.Stop();
+                mplayer.Close();
+                isPlaying = false;
+            }
+
+            // 1) Créer le fichier MIDI
+            // a. Créer un fichier et une piste audio ainsi que les informations de tempo
+            MIDISong song = new MIDISong();
+            song.AddTrack("Piste1");
+            song.SetTimeSignature(0, 4, 4);
+            song.SetTempo(0, 350);
+            
+
+        }
+
+        private void ButtonNext_Click(object sender, RoutedEventArgs e)
+        {
+            if (iNumber == 9)        iNumber = 0;
+            else                     iNumber ++;
         }
     }
 }

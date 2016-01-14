@@ -26,7 +26,7 @@ namespace Gene_Musique.Interface
         Boolean isPlaying;
         string strFileName;
         static int iNumber;
-
+        GenerationMusique genMusique;
 
         public MainWindow()
         {
@@ -37,8 +37,7 @@ namespace Gene_Musique.Interface
             mplayer.MediaEnded += mplayer_MediaEnded;
             isPlaying = false;
 
-            GenerationMusique genMusique = new GenerationMusique();
-            genMusique.GetPopulation()[iNumber].GetNotesDeMusique();
+            genMusique = new GenerationMusique();
 
             // On s'abonne à la fermeture du programme pour pouvoir nettoyer le répertoire et les fichiers midi
             this.Closed += MainWindow_Closed;
@@ -85,8 +84,22 @@ namespace Gene_Musique.Interface
             song.AddTrack("Piste1");
             song.SetTimeSignature(0, 4, 4);
             song.SetTempo(0, 350);
-            
 
+            int[] tabMusique = genMusique.GetPopulation()[iNumber].GetNotesDeMusique();
+
+            int instrument = rand.Next(1, 129);
+            song.SetChannelInstrument(0, 0, instrument);
+
+            for (int i = 0; i < 16; i++)
+                song.AddNote(0, 0, tabMusique[i], 12);
+
+
+            // d. Enregistrer le fichier .mid (lisible dans un lecteur externe par exemple)
+            // on prépare le flux de sortie
+            MemoryStream ms = new MemoryStream();
+            song.Save(ms);
+            ms.Seek(0, SeekOrigin.Begin);
+            ms.Close();
         }
 
         private void ButtonNext_Click(object sender, RoutedEventArgs e)

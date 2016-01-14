@@ -38,7 +38,7 @@ namespace Gene_Musique.Interface
             isPlaying = false;
 
             GenerationMusique genMusique = new GenerationMusique();
-            genMusique.GetPopulation()[iNumber].
+            genMusique.GetPopulation()[iNumber].GetNotesDeMusique();
 
             // On s'abonne à la fermeture du programme pour pouvoir nettoyer le répertoire et les fichiers midi
             this.Closed += MainWindow_Closed;

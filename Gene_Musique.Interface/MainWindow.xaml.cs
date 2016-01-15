@@ -26,6 +26,7 @@ namespace Gene_Musique.Interface
         Boolean isPlaying;
         string strFileName;
         static int iNumber;
+        static Random randomizer;
         GenerationMusique genMusique;
 
         public MainWindow()
@@ -36,6 +37,8 @@ namespace Gene_Musique.Interface
             mplayer = new MediaPlayer();
             mplayer.MediaEnded += mplayer_MediaEnded;
             isPlaying = false;
+            randomizer = new Random();
+            randomizer.Next();
 
             genMusique = new GenerationMusique();
 
@@ -87,12 +90,11 @@ namespace Gene_Musique.Interface
 
             int[] tabMusique = genMusique.GetPopulation()[iNumber].GetNotesDeMusique();
 
-            int instrument = rand.Next(1, 129);
+            int instrument = randomizer.Next(1, 129);
             song.SetChannelInstrument(0, 0, instrument);
 
             for (int i = 0; i < 16; i++)
                 song.AddNote(0, 0, tabMusique[i], 12);
-
 
             // d. Enregistrer le fichier .mid (lisible dans un lecteur externe par exemple)
             // on prépare le flux de sortie
@@ -100,6 +102,7 @@ namespace Gene_Musique.Interface
             song.Save(ms);
             ms.Seek(0, SeekOrigin.Begin);
             ms.Close();
+
         }
 
         private void ButtonNext_Click(object sender, RoutedEventArgs e)

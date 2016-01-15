@@ -23,10 +23,13 @@ namespace Gene_Musique.BusinessLogique
             this.population = new Individu[10];
 
             generationInitial();
-
-
-
         }
+
+        public Individu[] GetPopulation()
+        {
+            return population;
+        }
+
         public void generationInitial()
         {
             int[] intervalNote = new int[2] { 30, 100 };

@@ -20,6 +20,7 @@ namespace Gene_Musique.BusinessLogique
         /// <param name="intervalInstrument"></param>
         public Individu(int [] intervalNote,int[] intervalInstrument)
         {
+            randomizerNote = new Random();
             this.notesMusique = new int[16]; ;
             for (int i=0;i<16;i++)
             {
@@ -56,7 +57,7 @@ namespace Gene_Musique.BusinessLogique
         }
         public Individu GetEnfantMuter()
         {
-            
+            randomizerNote = new Random();
             int[] notesDeMusiqueMuter = new int[16];
             for(int i=0;i<=16;i++)
             {
@@ -67,6 +68,7 @@ namespace Gene_Musique.BusinessLogique
         }
         public Individu GetEnfantNaturel(Individu secondParent,int tauxFusion)
         {
+            randomizerNote = new Random();
             int[] notesDeMusiqueEnfant = new int[16];
             if(this.notation>=secondParent.getNotation())
             {

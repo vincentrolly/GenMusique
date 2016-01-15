@@ -58,6 +58,7 @@ namespace Gene_Musique.BusinessLogique
         }
         private Individu[] SelectionCouple()
         {
+            randomizer = new Random();
             Individu parent1 = population[randomizer.Next(0, NOMBRE_INDIVIDU - 1)];
             Individu parent2 = population[randomizer.Next(0, NOMBRE_INDIVIDU - 1)];
             double crossover = randomizer.Next(0,100)/100;

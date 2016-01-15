@@ -95,6 +95,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gene_Musique.BusinessLogique\Gene_Musique.BusinessLogique.csproj">
+      <Project>{b9b75171-4a29-4e7e-890d-d1b4ffd8eee7}</Project>
+      <Name>Gene_Musique.BusinessLogique</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

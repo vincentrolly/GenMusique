@@ -22,6 +22,7 @@ namespace Gene_Musique.Interface
     /// </summary>
     public partial class MainWindow : Window
     {
+        static Random rand;
         MediaPlayer mplayer;
         Boolean isPlaying;
         string strFileName;
@@ -84,7 +85,7 @@ namespace Gene_Musique.Interface
             song.AddTrack("Piste1");
             song.SetTimeSignature(0, 4, 4);
             song.SetTempo(0, 350);
-
+            rand = new Random();
             int[] tabMusique = genMusique.GetPopulation()[iNumber].GetNotesDeMusique();
 
             int instrument = rand.Next(1, 129);

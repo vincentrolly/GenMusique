@@ -11,7 +11,7 @@ namespace Gene_Musique.BusinessLogique
         private int[] notesMusique;
         private int typeInstrument;
         private int notation;
-        static Random randomizerNote;
+        static Random randomizerNote =new Random();
 
         /// <summary>
         /// Constructeur permettant de générer aléatioirement un individu avec ses notes et son type
@@ -20,7 +20,7 @@ namespace Gene_Musique.BusinessLogique
         /// <param name="intervalInstrument"></param>
         public Individu(int [] intervalNote,int[] intervalInstrument)
         {
-            randomizerNote = new Random();
+            
             this.notesMusique = new int[16]; ;
             for (int i=0;i<16;i++)
             {

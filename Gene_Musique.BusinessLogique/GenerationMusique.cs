@@ -17,10 +17,11 @@ namespace Gene_Musique.BusinessLogique
         private const double TXCROSSOVER = 0.6;
         private double crossover;
         private double mutation;
-        private static Random randomizer;
+        private static Random randomizer = new Random();
         public GenerationMusique()
         {
             this.population = new Individu[10];
+           // randomizer = new Random();
 
             generationInitial();
 
@@ -58,7 +59,7 @@ namespace Gene_Musique.BusinessLogique
         }
         private Individu[] SelectionCouple()
         {
-            randomizer = new Random();
+            
             Individu parent1 = population[randomizer.Next(0, NOMBRE_INDIVIDU - 1)];
             Individu parent2 = population[randomizer.Next(0, NOMBRE_INDIVIDU - 1)];
             double crossover = randomizer.Next(0,100)/100;
@@ -80,6 +81,11 @@ namespace Gene_Musique.BusinessLogique
 
         }
 
+        public Individu[] GetPopulation()
+        {
+           
+            return this.population;
+        }
     }
 
 

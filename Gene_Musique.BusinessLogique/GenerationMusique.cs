@@ -83,15 +83,6 @@ namespace Gene_Musique.BusinessLogique
             }
 
         }
-
-        public Individu[] GetPopulation()
-        {
-           
-            return this.population;
-        }
     }
-
-
-
 } 
  

@@ -25,8 +25,10 @@ namespace Gene_Musique.Interface
         static Random rand;
         MediaPlayer mplayer;
         Boolean isPlaying;
-        string strFileName;
         static int iNumber;
+        static Boolean Avis;
+        static int tempo = 250;
+        static int lengthNote = 20;
         static Random randomizer;
         GenerationMusique genMusique;
 
@@ -40,8 +42,14 @@ namespace Gene_Musique.Interface
             isPlaying = false;
             randomizer = new Random();
             randomizer.Next();
+            Avis = false;
 
             genMusique = new GenerationMusique();
+
+            sliderAvis.Value = 5;
+            textBoxAvis.Text = Math.Round(sliderAvis.Value, 0).ToString();
+            sliderTempo.Value = 250;
+            textBoxTempo.Text = Math.Round(sliderTempo.Value, 0).ToString();
 
             // On s'abonne à la fermeture du programme pour pouvoir nettoyer le répertoire et les fichiers midi
             this.Closed += MainWindow_Closed;
@@ -72,6 +80,45 @@ namespace Gene_Musique.Interface
 
         }
 
+        private void WriteMusic()
+        {
+            // 1) Créer le fichier MIDI
+            // a. Créer un fichier et une piste audio ainsi que les informations de tempo
+            MIDISong song = new MIDISong();
+            song.AddTrack("Piste1");
+            song.SetTimeSignature(0, 4, 4);
+            song.SetTempo(0, tempo);
+            rand = new Random();
+            int[] tabMusique = genMusique.GetPopulation()[iNumber].GetNotesDeMusique();
+
+            int instrument = randomizer.Next(1, 129);
+            song.SetChannelInstrument(0, 0, instrument);
+
+            for (int i = 0; i < 16; i++)
+                song.AddNote(0, 0, tabMusique[i], lengthNote);
+
+            // d. Enregistrer le fichier .mid (lisible dans un lecteur externe par exemple)
+            // on prépare le flux de sortie
+            MemoryStream ms = new MemoryStream();
+            song.Save(ms);
+            ms.Seek(0, SeekOrigin.Begin);
+            byte[] src = ms.GetBuffer();
+            ms.Close();
+
+            FileStream objWriter = File.Create("toto.midi");
+            objWriter.Write(src, 0, src.Length);
+            objWriter.Close();
+            objWriter.Dispose();
+            objWriter = null;
+        }
+
+        private void PlayMusic()
+        {
+            mplayer.Open(new Uri("toto.midi", UriKind.Relative));
+            isPlaying = true;
+            mplayer.Play();
+        }
+
         private void ButtonPlay_Click(object sender, RoutedEventArgs e)
         {
             // s'il y a un fichier en cours de lecture on l'arrête 
@@ -81,35 +128,29 @@ namespace Gene_Musique.Interface
                 mplayer.Close();
                 isPlaying = false;
             }
-
-            // 1) Créer le fichier MIDI
-            // a. Créer un fichier et une piste audio ainsi que les informations de tempo
-            MIDISong song = new MIDISong();
-            song.AddTrack("Piste1");
-            song.SetTimeSignature(0, 4, 4);
-            song.SetTempo(0, 350);
-            rand = new Random();
-            int[] tabMusique = genMusique.GetPopulation()[iNumber].GetNotesDeMusique();
-
-            int instrument = randomizer.Next(1, 129);
-            song.SetChannelInstrument(0, 0, instrument);
-
-            for (int i = 0; i < 16; i++)
-                song.AddNote(0, 0, tabMusique[i], 12);
-
-            // d. Enregistrer le fichier .mid (lisible dans un lecteur externe par exemple)
-            // on prépare le flux de sortie
-            MemoryStream ms = new MemoryStream();
-            song.Save(ms);
-            ms.Seek(0, SeekOrigin.Begin);
-            ms.Close();
-
+            WriteMusic();
+            PlayMusic();
         }
 
         private void ButtonNext_Click(object sender, RoutedEventArgs e)
         {
-            if (iNumber == 9)        iNumber = 0;
-            else                     iNumber ++;
+            if(Avis == true)
+            {
+                if (iNumber == 9) iNumber = 0;
+                else iNumber++;
+                Avis = false;
+            }
+        }
+
+        private void sliderAvis_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Avis = true;
+            textBoxAvis.Text = Math.Round(sliderAvis.Value, 0).ToString();
+        }
+
+        private void sliderTempo_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            textBoxTempo.Text = Math.Round(sliderTempo .Value, 0).ToString();
         }
     }
 }

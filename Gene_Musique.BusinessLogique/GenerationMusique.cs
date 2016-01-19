@@ -95,15 +95,13 @@ namespace Gene_Musique.BusinessLogique
             }
            
         }
-        public void loadPopulation(string filename)
-        {
-             public void loadPopulation(string filename)
+        public void LoadPopulation(string filename)
         {
             var xr = new XmlTextReader(filename);
             var xs = new XmlSerializer(typeof(Individu[]));
             this.population = (Individu[])xs.Deserialize(xr);
         }
-        }
+        
     }
 
 } 

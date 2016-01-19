@@ -20,7 +20,6 @@ namespace Gene_Musique.BusinessLogique
         /// <param name="intervalInstrument"></param>
         public Individu(int [] intervalNote,int[] intervalInstrument)
         {
-            
             this.notesMusique = new int[16]; ;
             for (int i=0;i<16;i++)
             {

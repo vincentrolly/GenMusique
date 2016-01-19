@@ -20,6 +20,7 @@
         <TextBox x:Name="textBoxLengthNote" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Margin="210,64,0,0"/>
         <Slider x:Name="sliderTempo" HorizontalAlignment="Left" VerticalAlignment="Top" Width="149" ValueChanged="sliderTempo_ValueChanged" Maximum="500" Margin="51,88,0,0"/>
         <TextBox x:Name="textBoxTempo" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" Margin="51,64,0,0"/>
+        <TextBox x:Name="textBoxNumberSong" HorizontalAlignment="Left" Height="23" Margin="302,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>

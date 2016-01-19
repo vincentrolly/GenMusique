@@ -25,7 +25,7 @@ namespace Gene_Musique.Interface
         static Random rand;
         MediaPlayer mplayer;
         Boolean isPlaying;
-        static int iNumber;
+        static int iNumber = 0;
         static Boolean Avis;
         static int tempo = 250;
         static int lengthNote = 20;
@@ -46,10 +46,15 @@ namespace Gene_Musique.Interface
 
             genMusique = new GenerationMusique();
 
+            //  Avis par défaut : 50% OK 50%NOK
             sliderAvis.Value = 5;
             textBoxAvis.Text = Math.Round(sliderAvis.Value, 0).ToString();
+            //  Tempo par défaut
             sliderTempo.Value = 250;
             textBoxTempo.Text = Math.Round(sliderTempo.Value, 0).ToString();
+
+            //  Affichage du numéro de la chanson dans une textbox
+            textBoxNumberSong.Text = Math.Round((double)iNumber, 0).ToString();
 
             // On s'abonne à la fermeture du programme pour pouvoir nettoyer le répertoire et les fichiers midi
             this.Closed += MainWindow_Closed;
@@ -88,12 +93,19 @@ namespace Gene_Musique.Interface
             song.AddTrack("Piste1");
             song.SetTimeSignature(0, 4, 4);
             song.SetTempo(0, tempo);
+
+
             rand = new Random();
+
+            //  Récupération du tableau contenant les notes de musique
             int[] tabMusique = genMusique.GetPopulation()[iNumber].GetNotesDeMusique();
 
-            int instrument = randomizer.Next(1, 129);
+            //  Choix d'un instrument au hasard parmi la liste des instruments
+            //  disponibles sur le port MIDI
+            int instrument = randomizer.Next(1, 2);
             song.SetChannelInstrument(0, 0, instrument);
 
+            //  Ajout des notes une à une dans la piste son
             for (int i = 0; i < 16; i++)
                 song.AddNote(0, 0, tabMusique[i], lengthNote);
 
@@ -122,7 +134,7 @@ namespace Gene_Musique.Interface
         private void ButtonPlay_Click(object sender, RoutedEventArgs e)
         {
             // s'il y a un fichier en cours de lecture on l'arrête 
-            if (isPlaying)
+            if (isPlaying == true)
             {
                 mplayer.Stop();
                 mplayer.Close();
@@ -140,6 +152,7 @@ namespace Gene_Musique.Interface
                 else iNumber++;
                 Avis = false;
             }
+            textBoxNumberSong.Text = Math.Round((double)iNumber, 0).ToString();
         }
 
         private void sliderAvis_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)

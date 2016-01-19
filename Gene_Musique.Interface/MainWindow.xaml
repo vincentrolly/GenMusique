@@ -5,24 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Gene_Musique.Interface"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Algorithme génétique By DEFRANCE Lucas et ROLLY-VACHEZ Vincent" Height="350" Width="525">
     <Grid>
-        <Button x:Name="ButtonRecord" Content="RECORD" HorizontalAlignment="Left" Margin="396,46,0,0" VerticalAlignment="Top" Width="92" Height="41" Click="ButtonRecord_Click"/>
-        <Button x:Name="ButtonNext" Content="NEXT" HorizontalAlignment="Left" Margin="396,88,0,0" VerticalAlignment="Top" Width="92" Height="41" Click="ButtonNext_Click"/>
-        <Button x:Name="ButtonPlay" Content="PLAY" HorizontalAlignment="Left" Margin="396,4,0,0" VerticalAlignment="Top" Width="92" Height="41" Click="ButtonPlay_Click"/>
+        <Grid>
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Grid.OpacityMask>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="#FF8B2121" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.OpacityMask>
+            <Button x:Name="ButtonRecord" Content="RECORD" HorizontalAlignment="Left" Margin="396,46,0,0" VerticalAlignment="Top" Width="92" Height="41" Click="ButtonRecord_Click"/>
+            <Button x:Name="ButtonNext" Content="NEXT" HorizontalAlignment="Left" Margin="396,88,0,0" VerticalAlignment="Top" Width="92" Height="41" Click="ButtonNext_Click"/>
+            <Button x:Name="ButtonPlay" Content="PLAY" HorizontalAlignment="Left" Margin="396,4,0,0" VerticalAlignment="Top" Width="92" Height="41" Click="ButtonPlay_Click"/>
+            <TextBox x:Name="textBoxTempo" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" Margin="158,50,0,0"/>
+            <TextBox x:Name="textBoxTempoTitle" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Tempo" VerticalAlignment="Top" Width="44" Margin="16,50,0,0"/>
+            <Slider x:Name="sliderTempo"      HorizontalAlignment="Left" VerticalAlignment="Top" Width="149" Height="33" SmallChange="1" ValueChanged="sliderTempo_ValueChanged" Maximum="500" Value="250" Margin="26,78,0,0"/>
+            <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="20" Margin="172,78,0,0" TextWrapping="Wrap" Text="500" VerticalAlignment="Top" Width="28"/>
+            <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" Height="20" Margin="16,78,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="13"/>
 
-        <TextBox x:Name="textBoxAvisTitle" HorizontalAlignment="Left" Height="19" TextWrapping="Wrap" Text="AVIS" VerticalAlignment="Top" Width="30" Margin="86,187,0,0"/>
-        <TextBox x:Name="textBoxAvis" HorizontalAlignment="Left" Height="24" Margin="86,262,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="textBoxTempo" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" Margin="51,50,0,0"/>
-        <TextBox x:Name="textBoxTempoTitle" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Tempo" VerticalAlignment="Top" Width="44" Margin="98,22,0,0"/>
-        <TextBox x:Name="textBoxNumberSong" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="21" Margin="367,214,0,0"/>
-        <TextBox x:Name="textBoxNumberSongTitle" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Chanson n°" VerticalAlignment="Top" Width="68" Margin="299,214,0,0"/>
-        <TextBox x:Name="textBoxLengthNote" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Margin="210,64,0,0"/>
-        <TextBox x:Name="textBoxLengthNoteTitle" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="LengthSound" VerticalAlignment="Top" Width="78" Margin="248,36,0,0"/>
-        
-        <Slider x:Name="sliderAvis" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" SmallChange="1" Margin="41,213,0,0" TickPlacement="BottomRight" Value="5" ValueChanged="sliderAvis_ValueChanged"/>
-        <Slider x:Name="sliderLengthNote" HorizontalAlignment="Left" VerticalAlignment="Top" Width="142" SmallChange="1" Maximum="50" Value="25" Margin="210,88,0,0" AutoToolTipPlacement="BottomRight" ValueChanged="sliderLengthNote_ValueChanged"/>
-        <Slider x:Name="sliderTempo" HorizontalAlignment="Left" VerticalAlignment="Top" Width="149" TickPlacement="BottomRight" Margin="51,85,0,0" Height="33" SmallChange="1" ValueChanged="sliderTempo_ValueChanged" Maximum="500" Value="250"/>
-        
+            <TextBox x:Name="textBoxNumberSong" HorizontalAlignment="Left" Height="18" TextWrapping="Wrap" VerticalAlignment="Top" Width="21" Margin="329,152,0,0"/>
+            <TextBox x:Name="textBoxNumberSongTitle" HorizontalAlignment="Left" Height="18" TextWrapping="Wrap" Text="Chanson n°" VerticalAlignment="Top" Width="68" RenderTransformOrigin="-0.118,-2.522" Margin="261,152,0,0"/>
+
+            <Grid Margin="215,22,126,208">
+                <TextBox x:Name="textBoxLengthNote" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="34" Margin="142,28,0,0"/>
+                <TextBox x:Name="textBoxLengthNoteTitle" HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" Text="LengthSound" VerticalAlignment="Top" Width="78" Margin="0,28,0,0"/>
+                <Slider x:Name="sliderLengthNote" HorizontalAlignment="Left" VerticalAlignment="Top" Width="149" Margin="10,56,0,0" Height="33" SmallChange="1" ValueChanged="sliderLengthNote_ValueChanged" Minimum="5" Maximum="80" Value="25"/>
+                <TextBox x:Name="textBox_Copy1" HorizontalAlignment="Left" Height="20" Margin="0,56,0,0" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" Width="13"/>
+                <TextBox x:Name="textBox_Copy2" HorizontalAlignment="Left" Height="20" Margin="156,56,0,0" TextWrapping="Wrap" Text="80" VerticalAlignment="Top" Width="20"/>
+            </Grid>
+
+            <Grid Margin="51,126,317,107">
+                <TextBox x:Name="textBoxAvis" HorizontalAlignment="Left" Height="19" Margin="112,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="34"/>
+                <TextBox x:Name="textBoxAvisTitle" HorizontalAlignment="Left" Height="19" TextWrapping="Wrap" Text="AVIS" VerticalAlignment="Top" Width="30" Margin="4,29,0,0"/>
+                <Slider x:Name="sliderAvis" HorizontalAlignment="Left" VerticalAlignment="Top" Width="149" Height="33" SmallChange="1" ValueChanged="sliderAvis_ValueChanged" Minimum="0" Maximum="10" Value="5" Margin="0,53,0,0"/>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

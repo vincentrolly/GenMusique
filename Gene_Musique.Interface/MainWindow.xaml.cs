@@ -48,18 +48,18 @@ namespace Gene_Musique.Interface
             genMusique = new GenerationMusique();
 
             //  Avis par défaut
-            textBoxAvis.Text = Math.Round(sliderAvis.Value, 0).ToString();
+            labelAvis.Content = Math.Round(sliderAvis.Value, 0).ToString();
             
             //  Tempo par défaut
             tempo = (int)Math.Round(sliderTempo.Value, 0);
-            textBoxTempo.Text = tempo.ToString();
+            labelTempo.Content = tempo.ToString();
 
             //  Longueur note par défaut
             lengthNote = (int)Math.Round(sliderLengthNote.Value, 0);
-            textBoxLengthNote.Text = lengthNote.ToString();
+            labelLengthSound.Content = lengthNote.ToString();
 
             //  Affichage du numéro de la chanson dans une textbox
-            textBoxNumberSong.Text = Math.Round((double)iNumber, 0).ToString();
+            labelNumberSong.Content = Math.Round((double)iNumber, 0).ToString();
             
             // On s'abonne à la fermeture du programme pour pouvoir nettoyer le répertoire et les fichiers midi
             this.Closed += MainWindow_Closed;
@@ -154,29 +154,45 @@ namespace Gene_Musique.Interface
         {
             if(Avis == true)
             {
-                if (iNumber == 9) iNumber = 0;
+                if (iNumber == 9)
+                {
+
+                    iNumber = 0;
+                }
                 else iNumber++;
                 Avis = false;
             }
-          textBoxNumberSong.Text = Math.Round((double)iNumber, 0).ToString();
+          labelNumberSong.Content = Math.Round((double)iNumber, 0).ToString();
         }
+/*
+        private void sauverFichier(int indice)
+        {
+            Individu[] toto = genMusique.GetPopulation();
 
+            saveFileDialog.ShowDialog();
+            string nomFichier = saveFileDialog.FileName;
+            Debug.WriteLine("nomFichier : " + nomFichier);  //This is the instrument value
+            lm.enregistreFichier(unIndividu, nomFichier);
+            saveFileDialog.Dispose();
+            saveFileDialog.Reset();
+        }
+        */
         private void sliderAvis_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             Avis = true;
-            textBoxAvis.Text = Math.Round(sliderAvis.Value, 0).ToString();
+            labelAvis.Content = Math.Round(sliderAvis.Value, 0).ToString();
         }
 
         private void sliderTempo_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             tempo = (int)Math.Round(sliderTempo.Value, 0);
-            textBoxTempo.Text = tempo.ToString();
+            labelTempo.Content = tempo.ToString();
         }
 
         private void sliderLengthNote_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             lengthNote = (int)Math.Round(sliderLengthNote.Value, 0);
-            textBoxLengthNote.Text = lengthNote.ToString();
+            labelLengthSound.Content = lengthNote.ToString();
         }
     }
 }

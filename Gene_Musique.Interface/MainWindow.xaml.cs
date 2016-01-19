@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -46,16 +47,20 @@ namespace Gene_Musique.Interface
 
             genMusique = new GenerationMusique();
 
-            //  Avis par défaut : 50% OK 50%NOK
-            sliderAvis.Value = 5;
+            //  Avis par défaut
             textBoxAvis.Text = Math.Round(sliderAvis.Value, 0).ToString();
+            
             //  Tempo par défaut
-            sliderTempo.Value = 250;
-            textBoxTempo.Text = Math.Round(sliderTempo.Value, 0).ToString();
+            tempo = (int)Math.Round(sliderTempo.Value, 0);
+            textBoxTempo.Text = tempo.ToString();
+
+            //  Longueur note par défaut
+            lengthNote = (int)Math.Round(sliderLengthNote.Value, 0);
+            textBoxLengthNote.Text = lengthNote.ToString();
 
             //  Affichage du numéro de la chanson dans une textbox
             textBoxNumberSong.Text = Math.Round((double)iNumber, 0).ToString();
-
+            
             // On s'abonne à la fermeture du programme pour pouvoir nettoyer le répertoire et les fichiers midi
             this.Closed += MainWindow_Closed;
         }
@@ -65,19 +70,23 @@ namespace Gene_Musique.Interface
         {
             // s'il y a un fichier en cours de lecture on l'arrête 
             if (isPlaying)
-            {
-                mplayer.Stop();
-                mplayer.Close();
-                isPlaying = false;
-            }
+                stop_and_delete_file();
         }
 
         // Lancé lorsque le fichier a fini sa lecture, pour le fermer proprement
         void mplayer_MediaEnded(object sender, EventArgs e)
         {
+            stop_and_delete_file();
+        }
+
+        void stop_and_delete_file()
+        {
             mplayer.Stop();
             mplayer.Close();
             isPlaying = false;
+
+            if (File.Exists("toto.midi"))
+                File.Delete("toto.midi");
         }
 
         private void ButtonRecord_Click(object sender, RoutedEventArgs e)
@@ -93,9 +102,6 @@ namespace Gene_Musique.Interface
             song.AddTrack("Piste1");
             song.SetTimeSignature(0, 4, 4);
             song.SetTempo(0, tempo);
-
-
-            rand = new Random();
 
             //  Récupération du tableau contenant les notes de musique
             int[] tabMusique = genMusique.GetPopulation()[iNumber].GetNotesDeMusique();
@@ -117,7 +123,7 @@ namespace Gene_Musique.Interface
             byte[] src = ms.GetBuffer();
             ms.Close();
 
-            FileStream objWriter = File.Create("toto.midi");
+            FileStream objWriter = File.Create ("toto.midi");
             objWriter.Write(src, 0, src.Length);
             objWriter.Close();
             objWriter.Dispose();
@@ -135,11 +141,11 @@ namespace Gene_Musique.Interface
         {
             // s'il y a un fichier en cours de lecture on l'arrête 
             if (isPlaying == true)
-            {
-                mplayer.Stop();
-                mplayer.Close();
-                isPlaying = false;
-            }
+                stop_and_delete_file();
+
+            //  Attente pour delete file midi done
+            while(File.Exists("toto.midi")) { }
+
             WriteMusic();
             PlayMusic();
         }
@@ -152,7 +158,7 @@ namespace Gene_Musique.Interface
                 else iNumber++;
                 Avis = false;
             }
-            textBoxNumberSong.Text = Math.Round((double)iNumber, 0).ToString();
+          textBoxNumberSong.Text = Math.Round((double)iNumber, 0).ToString();
         }
 
         private void sliderAvis_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -163,7 +169,14 @@ namespace Gene_Musique.Interface
 
         private void sliderTempo_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            textBoxTempo.Text = Math.Round(sliderTempo .Value, 0).ToString();
+            tempo = (int)Math.Round(sliderTempo.Value, 0);
+            textBoxTempo.Text = tempo.ToString();
+        }
+
+        private void sliderLengthNote_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            lengthNote = (int)Math.Round(sliderLengthNote.Value, 0);
+            textBoxLengthNote.Text = lengthNote.ToString();
         }
     }
 }

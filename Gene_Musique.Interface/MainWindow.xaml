@@ -7,20 +7,22 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <Button x:Name="ButtonRecord" Content="RECORD" HorizontalAlignment="Left" Margin="210,121,0,0" VerticalAlignment="Top" Width="92" Height="41" Click="ButtonRecord_Click"/>
-        <Button x:Name="ButtonNext" Content="NEXT" HorizontalAlignment="Left" Margin="362,121,0,0" VerticalAlignment="Top" Width="92" Height="41" Click="ButtonNext_Click"/>
-        <Button x:Name="ButtonPlay" Content="PLAY" HorizontalAlignment="Left" Margin="51,121,0,0" VerticalAlignment="Top" Width="92" Height="41" Click="ButtonPlay_Click"/>
-        <Grid Margin="41,201,356,54">
-            <Slider x:Name="sliderAvis" HorizontalAlignment="Left" Margin="0,23,0,0" VerticalAlignment="Top" Width="120" ValueChanged="sliderAvis_ValueChanged" SmallChange="1"/>
-            <TextBox x:Name="textBoxAvis" HorizontalAlignment="Left" Height="23" Margin="0,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Background="#FFD4C770"/>
-            <TextBox x:Name="textBoxTitle" HorizontalAlignment="Left" Height="23" Margin="44,0,0,0" TextWrapping="Wrap" Text="AVIS" VerticalAlignment="Top" Width="34"/>
+        <Button x:Name="ButtonRecord" Content="RECORD" HorizontalAlignment="Left" Margin="396,46,0,0" VerticalAlignment="Top" Width="92" Height="41" Click="ButtonRecord_Click"/>
+        <Button x:Name="ButtonNext" Content="NEXT" HorizontalAlignment="Left" Margin="396,88,0,0" VerticalAlignment="Top" Width="92" Height="41" Click="ButtonNext_Click"/>
+        <Button x:Name="ButtonPlay" Content="PLAY" HorizontalAlignment="Left" Margin="396,4,0,0" VerticalAlignment="Top" Width="92" Height="41" Click="ButtonPlay_Click"/>
 
-        </Grid>
-        <Slider x:Name="sliderLengthNote" HorizontalAlignment="Left" VerticalAlignment="Top" Width="142" Margin="210,88,0,0"/>
+        <TextBox x:Name="textBoxAvisTitle" HorizontalAlignment="Left" Height="19" TextWrapping="Wrap" Text="AVIS" VerticalAlignment="Top" Width="30" Margin="86,187,0,0"/>
+        <TextBox x:Name="textBoxAvis" HorizontalAlignment="Left" Height="24" Margin="86,262,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textBoxTempo" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" Margin="51,50,0,0"/>
+        <TextBox x:Name="textBoxTempoTitle" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Tempo" VerticalAlignment="Top" Width="44" Margin="98,22,0,0"/>
+        <TextBox x:Name="textBoxNumberSong" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="21" Margin="367,214,0,0"/>
+        <TextBox x:Name="textBoxNumberSongTitle" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Chanson n°" VerticalAlignment="Top" Width="68" Margin="299,214,0,0"/>
         <TextBox x:Name="textBoxLengthNote" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Margin="210,64,0,0"/>
-        <Slider x:Name="sliderTempo" HorizontalAlignment="Left" VerticalAlignment="Top" Width="149" ValueChanged="sliderTempo_ValueChanged" Maximum="500" Margin="51,88,0,0"/>
-        <TextBox x:Name="textBoxTempo" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" Margin="51,64,0,0"/>
-        <TextBox x:Name="textBoxNumberSong" HorizontalAlignment="Left" Height="23" Margin="302,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-
+        <TextBox x:Name="textBoxLengthNoteTitle" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="LengthSound" VerticalAlignment="Top" Width="78" Margin="248,36,0,0"/>
+        
+        <Slider x:Name="sliderAvis" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" SmallChange="1" Margin="41,213,0,0" TickPlacement="BottomRight" Value="5" ValueChanged="sliderAvis_ValueChanged"/>
+        <Slider x:Name="sliderLengthNote" HorizontalAlignment="Left" VerticalAlignment="Top" Width="142" SmallChange="1" Maximum="50" Value="25" Margin="210,88,0,0" AutoToolTipPlacement="BottomRight" ValueChanged="sliderLengthNote_ValueChanged"/>
+        <Slider x:Name="sliderTempo" HorizontalAlignment="Left" VerticalAlignment="Top" Width="149" TickPlacement="BottomRight" Margin="51,85,0,0" Height="33" SmallChange="1" ValueChanged="sliderTempo_ValueChanged" Maximum="500" Value="250"/>
+        
     </Grid>
 </Window>

@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Serialization;
 
 // FIRST COMMIT
 
@@ -83,6 +86,25 @@ namespace Gene_Musique.BusinessLogique
             }
 
         }
+        public void SavePopulation(string fileName)
+        {
+             XmlSerializer serializer = new XmlSerializer(this.population.GetType());
+            using (StreamWriter writer = new StreamWriter(fileName))
+            {
+                serializer.Serialize(writer, this.population);
+            }
+           
+        }
+        public void loadPopulation(string filename)
+        {
+             public void loadPopulation(string filename)
+        {
+            var xr = new XmlTextReader(filename);
+            var xs = new XmlSerializer(typeof(Individu[]));
+            this.population = (Individu[])xs.Deserialize(xr);
+        }
+        }
     }
+
 } 
  

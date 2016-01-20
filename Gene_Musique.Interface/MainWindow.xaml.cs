@@ -25,14 +25,14 @@ namespace Gene_Musique.Interface
     {
         MediaPlayer mplayer;
         Boolean isPlaying;
-        static int iNumber = 0;
+         int iNumber = 0;
         static Boolean Avis;
         static int tempo = 460;
         static int lengthNote = 25;
         static Random randomizer;
         GenerationMusique genMusique;
         static int numberIndividu;
-        string filename = "C:/tmp/file-individu-" + iNumber + ".midi";
+        string directory = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop),"generation"); 
 
         public MainWindow()
         {
@@ -45,12 +45,17 @@ namespace Gene_Musique.Interface
             randomizer = new Random();
             randomizer.Next();
             Avis = false;
+            if(!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
 
             // Génération d'une nouvelle musique
             genMusique = new GenerationMusique();
 
             // récupération du nombre d'individu
             numberIndividu = genMusique.GetNumberIndividu();
+            generatePopulationFile();
 
             //  Avis par défaut
             labelAvis.Content = Math.Round(sliderAvis.Value, 0).ToString();
@@ -78,6 +83,15 @@ namespace Gene_Musique.Interface
             if (isPlaying)
                 stop_and_delete_file();
         }
+        public void generatePopulationFile()
+        {
+            Individu[] population = this.genMusique.GetPopulation();
+            int nbIndividu = population.Count();
+            for(int i=0;i<nbIndividu;i++)
+            {
+                this.WriteMusic(population[i]);
+            }
+        }
 
         // Lancé lorsque le fichier a fini sa lecture, pour le fermer proprement
         void mplayer_MediaEnded(object sender, EventArgs e)
@@ -92,8 +106,8 @@ namespace Gene_Musique.Interface
             mplayer.Close();
             isPlaying = false;
 
-            if (File.Exists(filename))
-                File.Delete(filename);
+            if (File.Exists(directory + "piste" + this.iNumber + ".midi"))
+                File.Delete(directory + "piste" + this.iNumber + ".midi");
         }
 
         private void ButtonRecord_Click(object sender, RoutedEventArgs e)
@@ -102,7 +116,7 @@ namespace Gene_Musique.Interface
         }
 
         //  Ecriture musique dans fichier temporaire
-        private void WriteMusic()
+        private void WriteMusic(Individu individu)
         {
             // 1) Créer le fichier MIDI
             // a. Créer un fichier et une piste audio ainsi que les informations de tempo
@@ -112,10 +126,10 @@ namespace Gene_Musique.Interface
             song.SetTempo(0, tempo);
 
             //  Récupération du tableau contenant les notes de musique
-            int[] tabMusique = genMusique.GetPopulation()[iNumber].GetNotesDeMusique();
+            int[] tabMusique = individu.GetNotesDeMusique();
 
             //  Récupération du type d'instrument dans l'individu présent dans la population
-            int instrument = genMusique.GetPopulation()[iNumber].GetTypeInstrument();
+            int instrument = individu.GetTypeInstrument();
             song.SetChannelInstrument(0, 0, instrument);
 
             //  Ajout des notes une à une dans la piste son
@@ -130,7 +144,7 @@ namespace Gene_Musique.Interface
             byte[] src = ms.GetBuffer();
             ms.Close();
 
-            FileStream objWriter = File.Create (filename);
+            FileStream objWriter = File.Create (directory+"piste"+this.iNumber+".midi");
 
             objWriter.Write(src, 0, src.Length);
             objWriter.Close();
@@ -140,7 +154,7 @@ namespace Gene_Musique.Interface
 
         private void PlayMusic()
         {
-            mplayer.Open(new Uri(filename, UriKind.Relative));
+            mplayer.Open(new Uri(directory + "piste" + this.iNumber + ".midi", UriKind.Relative));
             isPlaying = true;
             mplayer.Play();
         }
@@ -152,9 +166,9 @@ namespace Gene_Musique.Interface
                 stop_and_delete_file();
 
             //  Attente pour delete file midi done
-            while(File.Exists(filename)) { }
+            while(File.Exists(directory)) { }
 
-            WriteMusic();
+            
             PlayMusic();
         }
 
@@ -165,6 +179,7 @@ namespace Gene_Musique.Interface
                 if (iNumber == numberIndividu)
                 {
                     genMusique.Accouplement();
+                    generatePopulationFile();
                     iNumber = 0;
                 }
                 else iNumber++;

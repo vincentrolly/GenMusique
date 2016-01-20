@@ -30,10 +30,9 @@ namespace Gene_Musique.Interface
         static int tempo = 460;
         static int lengthNote = 25;
         static Random randomizer;
-        static int levelMaxInstrument = 20;
-        static int levelMinInstrument = 1;
         GenerationMusique genMusique;
         static int numberIndividu;
+        string filename = "C:/tmp/file-individu-" + iNumber + ".midi";
 
         public MainWindow()
         {
@@ -93,8 +92,8 @@ namespace Gene_Musique.Interface
             mplayer.Close();
             isPlaying = false;
 
-            if (File.Exists("toto.midi"))
-                File.Delete("toto.midi");
+            if (File.Exists(filename))
+                File.Delete(filename);
         }
 
         private void ButtonRecord_Click(object sender, RoutedEventArgs e)
@@ -115,9 +114,8 @@ namespace Gene_Musique.Interface
             //  Récupération du tableau contenant les notes de musique
             int[] tabMusique = genMusique.GetPopulation()[iNumber].GetNotesDeMusique();
 
-            //  Choix d'un instrument au hasard parmi la liste des instruments
-            //  disponibles sur le port MIDI
-            int instrument = randomizer.Next(levelMinInstrument, levelMaxInstrument);
+            //  Récupération du type d'instrument dans l'individu présent dans la population
+            int instrument = genMusique.GetPopulation()[iNumber].GetTypeInstrument();
             song.SetChannelInstrument(0, 0, instrument);
 
             //  Ajout des notes une à une dans la piste son
@@ -132,7 +130,8 @@ namespace Gene_Musique.Interface
             byte[] src = ms.GetBuffer();
             ms.Close();
 
-            FileStream objWriter = File.Create ("toto.midi");
+            FileStream objWriter = File.Create (filename);
+
             objWriter.Write(src, 0, src.Length);
             objWriter.Close();
             objWriter.Dispose();
@@ -141,7 +140,7 @@ namespace Gene_Musique.Interface
 
         private void PlayMusic()
         {
-            mplayer.Open(new Uri("toto.midi", UriKind.Relative));
+            mplayer.Open(new Uri(filename, UriKind.Relative));
             isPlaying = true;
             mplayer.Play();
         }
@@ -153,7 +152,7 @@ namespace Gene_Musique.Interface
                 stop_and_delete_file();
 
             //  Attente pour delete file midi done
-            while(File.Exists("toto.midi")) { }
+            while(File.Exists(filename)) { }
 
             WriteMusic();
             PlayMusic();

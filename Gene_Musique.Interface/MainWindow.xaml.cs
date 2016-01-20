@@ -89,7 +89,7 @@ namespace Gene_Musique.Interface
             int nbIndividu = population.Count();
             for(int i=0;i<nbIndividu;i++)
             {
-                this.WriteMusic(population[i]);
+                this.WriteMusic(population[i],i);
             }
         }
 
@@ -105,18 +105,28 @@ namespace Gene_Musique.Interface
             mplayer.Stop();
             mplayer.Close();
             isPlaying = false;
-
-            if (File.Exists(directory + "piste" + this.iNumber + ".midi"))
-                File.Delete(directory + "piste" + this.iNumber + ".midi");
+            
         }
 
         private void ButtonRecord_Click(object sender, RoutedEventArgs e)
         {
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.FileName = "Piste"+this.iNumber; // Default file name
+            dlg.DefaultExt = ".midi"; // Default file extension
+            dlg.Filter = "Midi song (.midi)|*.midi"; // Filter files by extension
 
+            // Show save file dialog box
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Process save file dialog box results
+            if (result == true)
+            {
+                File.Copy(directory+"/piste"+iNumber+".midi",dlg.FileName);
+            }
         }
 
         //  Ecriture musique dans fichier temporaire
-        private void WriteMusic(Individu individu)
+        private void WriteMusic(Individu individu,int numeroPiste)
         {
             // 1) Créer le fichier MIDI
             // a. Créer un fichier et une piste audio ainsi que les informations de tempo
@@ -144,7 +154,7 @@ namespace Gene_Musique.Interface
             byte[] src = ms.GetBuffer();
             ms.Close();
 
-            FileStream objWriter = File.Create (directory+"piste"+this.iNumber+".midi");
+            FileStream objWriter = File.Create (directory+"/piste"+numeroPiste+".midi");
 
             objWriter.Write(src, 0, src.Length);
             objWriter.Close();
@@ -154,7 +164,7 @@ namespace Gene_Musique.Interface
 
         private void PlayMusic()
         {
-            mplayer.Open(new Uri(directory + "piste" + this.iNumber + ".midi", UriKind.Relative));
+            mplayer.Open(new Uri(directory + "/piste" + this.iNumber + ".midi", UriKind.Absolute));
             isPlaying = true;
             mplayer.Play();
         }
@@ -166,21 +176,52 @@ namespace Gene_Musique.Interface
                 stop_and_delete_file();
 
             //  Attente pour delete file midi done
-            while(File.Exists(directory)) { }
+            if (File.Exists(directory+ "/piste" + iNumber + ".midi"))
+            {
 
-            
-            PlayMusic();
+
+                PlayMusic();
+            }
         }
 
         private void ButtonNext_Click(object sender, RoutedEventArgs e)
         {
             if(Avis == true)
             {
-                if (iNumber == numberIndividu)
+                if (iNumber <= numberIndividu)
                 {
-                    genMusique.Accouplement();
-                    generatePopulationFile();
-                    iNumber = 0;
+                    MessageBoxResult msg =  MessageBox.Show("Voulez vous sauvegarder?", "Voulez vous sauvegarder cette génération",MessageBoxButton.YesNoCancel);
+                    if(msg ==MessageBoxResult.Yes)
+                    {
+
+                        Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+                        dlg.FileName = "generationMidi"+DateTime.Now.ToShortDateString(); // Default file name
+                        dlg.DefaultExt = ".xml"; // Default file extension
+                        dlg.Filter = "Xml document (.xml)|*.xml"; // Filter files by extension
+
+                        // Show save file dialog box
+                        Nullable<bool> result = dlg.ShowDialog();
+
+                        // Process save file dialog box results
+                        if (result == true)
+                        {
+                            this.genMusique.SavePopulation(dlg.FileName);
+                            genMusique.Accouplement();
+                            generatePopulationFile();
+                            iNumber = 0;
+                        }
+                        }
+                    else if(msg==MessageBoxResult.No)
+                    {
+                        genMusique.Accouplement();
+                        generatePopulationFile();
+                        iNumber = 0;
+                    }
+                    else
+                    {
+
+                    }
+                    
                 }
                 else iNumber++;
                 Avis = false;

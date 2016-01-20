@@ -23,15 +23,17 @@ namespace Gene_Musique.Interface
     /// </summary>
     public partial class MainWindow : Window
     {
-        static Random rand;
         MediaPlayer mplayer;
         Boolean isPlaying;
         static int iNumber = 0;
         static Boolean Avis;
-        static int tempo = 250;
-        static int lengthNote = 20;
+        static int tempo = 460;
+        static int lengthNote = 25;
         static Random randomizer;
+        static int levelMaxInstrument = 20;
+        static int levelMinInstrument = 1;
         GenerationMusique genMusique;
+        static int numberIndividu;
 
         public MainWindow()
         {
@@ -45,7 +47,11 @@ namespace Gene_Musique.Interface
             randomizer.Next();
             Avis = false;
 
+            // Génération d'une nouvelle musique
             genMusique = new GenerationMusique();
+
+            // récupération du nombre d'individu
+            numberIndividu = genMusique.GetNumberIndividu();
 
             //  Avis par défaut
             labelAvis.Content = Math.Round(sliderAvis.Value, 0).ToString();
@@ -69,6 +75,7 @@ namespace Gene_Musique.Interface
         void MainWindow_Closed(object sender, EventArgs e)
         {
             // s'il y a un fichier en cours de lecture on l'arrête 
+            // et on delete le fichier temporaire s'il existe
             if (isPlaying)
                 stop_and_delete_file();
         }
@@ -79,6 +86,7 @@ namespace Gene_Musique.Interface
             stop_and_delete_file();
         }
 
+        //  Stop lecture en cours + delete temporary midi file
         void stop_and_delete_file()
         {
             mplayer.Stop();
@@ -94,6 +102,7 @@ namespace Gene_Musique.Interface
 
         }
 
+        //  Ecriture musique dans fichier temporaire
         private void WriteMusic()
         {
             // 1) Créer le fichier MIDI
@@ -108,11 +117,11 @@ namespace Gene_Musique.Interface
 
             //  Choix d'un instrument au hasard parmi la liste des instruments
             //  disponibles sur le port MIDI
-            int instrument = randomizer.Next(1, 2);
+            int instrument = randomizer.Next(levelMinInstrument, levelMaxInstrument);
             song.SetChannelInstrument(0, 0, instrument);
 
             //  Ajout des notes une à une dans la piste son
-            for (int i = 0; i < 16; i++)
+            for (int i = 0; i < numberIndividu; i++)
                 song.AddNote(0, 0, tabMusique[i], lengthNote);
 
             // d. Enregistrer le fichier .mid (lisible dans un lecteur externe par exemple)
@@ -154,9 +163,9 @@ namespace Gene_Musique.Interface
         {
             if(Avis == true)
             {
-                if (iNumber == 9)
+                if (iNumber == numberIndividu)
                 {
-
+                    genMusique.Accouplement();
                     iNumber = 0;
                 }
                 else iNumber++;

@@ -32,8 +32,8 @@
                 <Label x:Name="label_Copy" Content="0" HorizontalAlignment="Left" Margin="0,24,0,0" VerticalAlignment="Top"/>
             </Grid>
             <Grid Margin="21,31,302,227">
-                <Label x:Name="labelTempo" Content="250" HorizontalAlignment="Left" Margin="160,0,0,0" VerticalAlignment="Top" Width="34" OpacityMask="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}"/>
-                <Slider x:Name="sliderTempo"      HorizontalAlignment="Left" VerticalAlignment="Top" Width="148" Height="34" SmallChange="1" ValueChanged="sliderTempo_ValueChanged" Maximum="500" Value="250" Margin="17,27,0,0"/>
+                <Label x:Name="labelTempo" Content="460" HorizontalAlignment="Left" Margin="160,0,0,0" VerticalAlignment="Top" Width="34" OpacityMask="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}"/>
+                <Slider x:Name="sliderTempo"      HorizontalAlignment="Left" VerticalAlignment="Top" Width="148" Height="34" SmallChange="1" ValueChanged="sliderTempo_ValueChanged" Maximum="500" Value="460" Margin="17,27,0,0"/>
                 <Label x:Name="label_Copy3" Content="0" HorizontalAlignment="Left" Margin="0,23,0,0" VerticalAlignment="Top"/>
                 <Label x:Name="label" Content="500" HorizontalAlignment="Left" Margin="160,26,0,0" VerticalAlignment="Top" Width="34"/>
                 <Label x:Name="label1" Content="TEMPO" HorizontalAlignment="Left" Margin="0,1,0,0" VerticalAlignment="Top"/>

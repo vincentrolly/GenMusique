@@ -105,7 +105,17 @@ namespace Gene_Musique.Interface
             mplayer.Stop();
             mplayer.Close();
             isPlaying = false;
+            deleteFile();
             
+        }
+        private void deleteFile()
+        {
+            string[] files = Directory.GetFiles(directory);
+            foreach(string filename in files)
+            {
+                File.Delete(filename);
+            }
+
         }
 
         private void ButtonRecord_Click(object sender, RoutedEventArgs e)

@@ -6,23 +6,34 @@
         xmlns:local="clr-namespace:Gene_Musique.Interface"
         mc:Ignorable="d"
         Title="Algorithme génétique By DEFRANCE Lucas et ROLLY-VACHEZ Vincent" Height="350" Width="525">
+    
     <Grid>
-        <Grid Background="#FF045D4D">
+       
+        <Grid Background="AliceBlue">
             <Grid.OpacityMask>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="0"/>
                     <GradientStop Color="#FF8B2121" Offset="1"/>
                 </LinearGradientBrush>
             </Grid.OpacityMask>
-            <Button x:Name="ButtonRecord" Content="SAVE" HorizontalAlignment="Left" Margin="249,60,0,0" VerticalAlignment="Top" Width="92" Height="41" Click="ButtonRecord_Click"/>
+            <Button x:Name="ButtonRecord" Background="LightBlue" Content="SAVE" HorizontalAlignment="Left" Margin="251,94,0,0" VerticalAlignment="Top" Width="92" Height="41" Click="ButtonRecord_Click"/>
             <Grid Margin="358,6,67,241">
-                <Button x:Name="ButtonNext" Content="NEXT" HorizontalAlignment="Left" VerticalAlignment="Top" Width="92" Height="41" Click="ButtonNext_Click"/>
+                <Button x:Name="ButtonNext" Background="LightBlue" Content="NEXT" HorizontalAlignment="Left" VerticalAlignment="Top" Width="92" Height="41" Click="ButtonNext_Click" Margin="11,35,-8,-0.2"/>
                 <Grid Margin="0,46,-8,-14">
                     <Label x:Name="label4" Content="Chanson n°" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     <Label x:Name="labelNumberSong" Content="0" HorizontalAlignment="Left" Margin="71,0,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </Grid>
-            <Button x:Name="ButtonPlay" Content="PLAY" HorizontalAlignment="Left" Margin="249,6,0,0" VerticalAlignment="Top" Width="92" Height="41" Click="ButtonPlay_Click"/>
+            <Menu IsMainMenu="True" Margin="0,0,0,296.8">
+                <MenuItem Header="File" >
+                    <MenuItem x:Name="open" Header="Open" Click="open_Click"/>
+                    <MenuItem x:Name="save_as" Header="Save As" Click="save_as_Click"/>
+                    <MenuItem Header="Quit"/>
+                </MenuItem>
+                <MenuItem Header="Configuratiion" />
+                <MenuItem Header="?" />
+            </Menu>
+            <Button x:Name="ButtonPlay" Content="PLAY" HorizontalAlignment="Left" Margin="252,36,0,0" VerticalAlignment="Top" Width="92" Height="41" Background="LightBlue" Click="ButtonPlay_Click"/>
 
             <Grid Margin="251,61,176,234"/>
             <Grid Margin="21,97,308,162">

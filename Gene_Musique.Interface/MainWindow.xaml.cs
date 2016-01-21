@@ -198,14 +198,14 @@ namespace Gene_Musique.Interface
         {
             if(Avis == true)
             {
-                if (iNumber <= numberIndividu)
+                if (iNumber >= numberIndividu)
                 {
-                    MessageBoxResult msg =  MessageBox.Show("Voulez vous sauvegarder?", "Voulez vous sauvegarder cette génération",MessageBoxButton.YesNoCancel);
-                    if(msg ==MessageBoxResult.Yes)
+                    MessageBoxResult msg = MessageBox.Show("Voulez vous sauvegarder?", "Voulez vous sauvegarder cette génération", MessageBoxButton.YesNoCancel);
+                    if (msg == MessageBoxResult.Yes)
                     {
 
                         Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-                        dlg.FileName = "generationMidi"+DateTime.Now.ToShortDateString(); // Default file name
+                        dlg.FileName = "generationMidi" + DateTime.Now.ToShortDateString(); // Default file name
                         dlg.DefaultExt = ".xml"; // Default file extension
                         dlg.Filter = "Xml document (.xml)|*.xml"; // Filter files by extension
 
@@ -220,8 +220,8 @@ namespace Gene_Musique.Interface
                             generatePopulationFile();
                             iNumber = 0;
                         }
-                        }
-                    else if(msg==MessageBoxResult.No)
+                    }
+                    else if (msg == MessageBoxResult.No)
                     {
                         genMusique.Accouplement();
                         generatePopulationFile();
@@ -231,10 +231,13 @@ namespace Gene_Musique.Interface
                     {
 
                     }
-                    
+
                 }
-                else iNumber++;
-                Avis = false;
+                else
+                {
+                    iNumber++;
+                    Avis = false;
+                }
             }
           labelNumberSong.Content = Math.Round((double)iNumber, 0).ToString();
         }
@@ -268,5 +271,40 @@ namespace Gene_Musique.Interface
             lengthNote = (int)Math.Round(sliderLengthNote.Value, 0);
             labelLengthSound.Content = lengthNote.ToString();
         }
+
+        private void open_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.FileName = directory;
+            dlg.Filter = "";
+            Nullable<bool> isClose = dlg.ShowDialog();
+            if(isClose==true)
+            {
+                this.genMusique.LoadPopulation(dlg.FileName);
+            }
+        }
+        private void save_as_Click(object sender, RoutedEventArgs e)
+        {
+            SavePopulationXml();
     }
+    private void SavePopulationXml()
+    {
+        Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+        dlg.FileName = "generationMidi" + DateTime.Now.ToShortDateString(); // Default file name
+        dlg.DefaultExt = ".xml"; // Default file extension
+        dlg.Filter = "Xml document (.xml)|*.xml"; // Filter files by extension
+
+        // Show save file dialog box
+        Nullable<bool> result = dlg.ShowDialog();
+
+        // Process save file dialog box results
+        if (result == true)
+        {
+
+            this.genMusique.SavePopulation(dlg.FileName);
+        }
+    }
+
+
+}
 }

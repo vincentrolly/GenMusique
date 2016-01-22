@@ -17,7 +17,10 @@ namespace Gene_Musique.BusinessLogique
                 new string [] {"Kansas","Carry on wayard my son" },
                 new string [] {"Maroon 5","sugar" },
                 new string [] {"Artic Monkey","Do you wanna know" },
-                new string [] {"Three day of grace","Falling angel"}
+                new string [] {"Three day of grace","Falling angel","Human"},
+                new string [] {"Beatle","Come as you are","lBloom"},
+                new string [] {"Metallica","Master of puppet","Fade to black"},
+                new string [] {"Oasis","Supersonic","Don't look back in anger"},
             };
             return fixture;
         }

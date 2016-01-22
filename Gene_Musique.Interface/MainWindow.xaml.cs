@@ -80,7 +80,7 @@ namespace Gene_Musique.Interface
         {
             // s'il y a un fichier en cours de lecture on l'arrête 
             // et on delete le fichier temporaire s'il existe
-            if (isPlaying)
+            
                 stop_and_delete_file();
         }
         public void generatePopulationFile()

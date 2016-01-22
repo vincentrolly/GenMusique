@@ -43,6 +43,8 @@
     <Compile Include="AuteurEtChansonFixture.cs" />
     <Compile Include="GenerationMusique.cs" />
     <Compile Include="Individu.cs" />
+    <Compile Include="Instrument.cs" />
+    <Compile Include="InstrumentFixture.cs" />
     <Compile Include="MIDISong.cs" />
     <Compile Include="MIDITrack.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

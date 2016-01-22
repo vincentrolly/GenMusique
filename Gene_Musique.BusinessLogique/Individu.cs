@@ -10,12 +10,21 @@ namespace Gene_Musique.BusinessLogique
     [Serializable]
     public class Individu
     {
+        private string _nomChanson;
+        private string _auteur;
+        private int[] _notesMusique;
+        private int _notation;
+        private int _typeInstrument;
+        [XmlAttribute("auteur")]
+        public string auteur { get { return this._auteur; } set { this._auteur = value; } }
+        [XmlAttribute("nomChanson")]
+        public string nomChanson { get { return this._nomChanson; } set { this._nomChanson = value; } }
         [XmlAttribute("notesMusique")]
-        public int[] notesMusique { get; set; }
+        public int[] notesMusique { get { return this._notesMusique; } set { this._notesMusique = value; } }
         [XmlAttribute("typeInstrument")]
-        public int typeInstrument { get; set; }
+        public int typeInstrument { get { return this._typeInstrument; } set { this._typeInstrument = value; } }
         [XmlAttribute("notation")]
-        public int notation { get; set; }
+        public int notation { get { return this._notation; }set { this._notation = value; } }
         private int NumberNote = 16;
         static Random randomizerNote = new Random();
 
@@ -26,6 +35,7 @@ namespace Gene_Musique.BusinessLogique
         /// <param name="intervalInstrument"></param>
         public Individu(int[] intervalNote, int[] intervalInstrument)
         {
+            this.getNomAuteurETChanson();
             this.notesMusique = new int[NumberNote]; ;
             for (int i = 0; i < NumberNote; i++)
             {
@@ -66,6 +76,7 @@ namespace Gene_Musique.BusinessLogique
 
         private Individu(int[] noteDeMusique, int typeInstrument)
         {
+            this.getNomAuteurETChanson();
             this.notesMusique = noteDeMusique;
             this.notation = 5;
             this.typeInstrument = typeInstrument;
@@ -115,6 +126,14 @@ namespace Gene_Musique.BusinessLogique
                     notesDeMusiqueFusionner[i] = noteParentFaible[i];
             }
             return notesDeMusiqueFusionner;
+        }
+        public void getNomAuteurETChanson()
+        {
+            string[][] aAuteurETChanson = AuteurETChansonFixture.GetFixture();
+            int indexAleatoire = randomizerNote.Next(0, aAuteurETChanson.Length-1);
+            int indexChanson = randomizerNote.Next(1, aAuteurETChanson[indexAleatoire].Length-1);
+            this.auteur = aAuteurETChanson[indexAleatoire][0];
+            this.nomChanson = aAuteurETChanson[indexAleatoire][indexChanson];
         }
     }
 }

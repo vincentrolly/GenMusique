@@ -8,7 +8,13 @@ namespace Gene_Musique.BusinessLogique
 {
     public class GenerateurAleatoireSingleTon
     {
-        private const string[] aChansons= ["Dark side of the moon","Hurricane"];
+        private string[] aChansons;
+        public string [] GetFixture()
+        {
+            string[] fixture =  new string[] { "Dark side of the moon", "Hurricane","Welcome to the machine","Do you wanna know",
+        "Carry on my wayard"};
+            return fixture;
+        }
     }
 
     

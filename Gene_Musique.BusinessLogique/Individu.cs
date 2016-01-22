@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Gene_Musique.BusinessLogique
 {
+    [Serializable]
     public class Individu
     {
-        private int[] notesMusique;
-        private int typeInstrument;
-        private int notation;
+        [XmlAttribute("notesMusique")]
+        public int[] notesMusique { get; set; }
+        [XmlAttribute("typeInstrument")]
+        public int typeInstrument { get; set; }
+        [XmlAttribute("notation")]
+        public int notation { get; set; }
         private int NumberNote = 16;
         static Random randomizerNote = new Random();
 
@@ -53,6 +58,10 @@ namespace Gene_Musique.BusinessLogique
         public string ToString()
         {
             return this.notesMusique.ToString();
+        }
+        public Individu()
+        {
+            this.notation = 5;
         }
 
         private Individu(int[] noteDeMusique, int typeInstrument)

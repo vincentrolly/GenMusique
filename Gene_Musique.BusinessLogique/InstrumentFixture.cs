@@ -8,10 +8,26 @@ namespace Gene_Musique.BusinessLogique
 {
     public class InstrumentFixture
     {
-        public string [][] GetFixture()
+        public string[,] GetFixture()
         {
-            string [][] fixture = new string [][]
+
+            int[,] toto = new int[,]
             {
+               {1,2} 
+            };
+            string[,] fixture = new string[,]
+            {
+                { "one", "two" }, 
+                { "three", "four" },
+                { "five", "six" }
+            };
+
+            return fixture;
+
+            /*
+            string[][] fixture = new string[][]
+            {
+                "1", "Acoustic Grand Piano"
                 /*
                 Piano:
 1 Acoustic Grand Piano
@@ -175,7 +191,6 @@ Sound effects:
 
 
                 */
-            }
         }
     }
 }

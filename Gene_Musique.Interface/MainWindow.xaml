@@ -5,58 +5,126 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Gene_Musique.Interface"
         mc:Ignorable="d"
-        Title="Algorithme génétique By DEFRANCE Lucas et ROLLY-VACHEZ Vincent" Height="350" Width="525">
-    
-    <Grid>
-       
-        <Grid Background="AliceBlue">
+        Title="Algorithme génétique By DEFRANCE Lucas et ROLLY-VACHEZ Vincent" Height="421" Width="677.667">
+
+    <Grid Margin="0,0,95,4">
+
+        <Grid Background="AliceBlue" Margin="0,0,34,58">
             <Grid.OpacityMask>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="0"/>
                     <GradientStop Color="#FF8B2121" Offset="1"/>
                 </LinearGradientBrush>
             </Grid.OpacityMask>
-            <Button x:Name="ButtonRecord" Background="LightBlue" Content="SAVE" HorizontalAlignment="Left" Margin="251,94,0,0" VerticalAlignment="Top" Width="92" Height="41" Click="ButtonRecord_Click"/>
-            <Grid Margin="358,6,67,241">
-                <Button x:Name="ButtonNext" Background="LightBlue" Content="NEXT" HorizontalAlignment="Left" VerticalAlignment="Top" Width="92" Height="41" Click="ButtonNext_Click" Margin="11,35,-8,-0.2"/>
-                <Grid Margin="0,46,-8,-14">
-                    <Label x:Name="label4" Content="Chanson n°" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                    <Label x:Name="labelNumberSong" Content="0" HorizontalAlignment="Left" Margin="71,0,0,0" VerticalAlignment="Top"/>
-                </Grid>
-            </Grid>
+
             <Menu IsMainMenu="True" Margin="0,0,0,296.8">
                 <MenuItem Header="File" >
                     <MenuItem x:Name="open" Header="Open" Click="open_Click"/>
                     <MenuItem x:Name="save_as" Header="Save As" Click="save_as_Click"/>
                     <MenuItem Header="Quit"/>
                 </MenuItem>
-                <MenuItem Header="Configuratiion" />
+                <MenuItem Header="Configuration" />
                 <MenuItem Header="?" />
             </Menu>
-            <Button x:Name="ButtonPlay" Content="PLAY" HorizontalAlignment="Left" Margin="252,36,0,0" VerticalAlignment="Top" Width="92" Height="41" Background="LightBlue" Click="ButtonPlay_Click"/>
-
-            <Grid Margin="251,61,176,234"/>
-            <Grid Margin="21,97,308,162">
-                <Label x:Name="labelAvis" HorizontalAlignment="Left" Margin="167,0,0,0" VerticalAlignment="Top" Content="5" Width="21"/>
-                <Slider x:Name="sliderAvis" HorizontalAlignment="Left" VerticalAlignment="Top" Width="149" Height="33" SmallChange="1" ValueChanged="sliderAvis_ValueChanged" Minimum="0" Maximum="10" Value="5" Margin="16,26,0,0"/>
-                <Label x:Name="label_Copy4" Content="10" HorizontalAlignment="Left" Margin="160,24,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.783,1.41" Width="28"/>
-                <Label x:Name="label_Copy" Content="0" HorizontalAlignment="Left" Margin="0,24,0,0" VerticalAlignment="Top"/>
+            <Grid Margin="21,36,406,253">
+                <Label x:Name="labelChansonTitle" Content="Génération n°" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Label x:Name="labelNumberGeneration" Content="0" HorizontalAlignment="Left" Margin="80,0,0,0" VerticalAlignment="Top"/>
             </Grid>
-            <Grid Margin="21,31,302,227">
+
+            <Grid Margin="195,27,187,241">
+                <Button x:Name="ButtonNext" Background="LightBlue" Content="NEXT" HorizontalAlignment="Left" VerticalAlignment="Top" Width="42" Height="41" Click="ButtonNext_Click" Margin="98,0,0,0"/>
+                <Button x:Name="ButtonRecord" Background="LightBlue" Content="SAVE" HorizontalAlignment="Left" Margin="49,0,0,0" VerticalAlignment="Top" Width="44" Height="41" Click="ButtonRecord_Click"/>
+                <Button x:Name="ButtonPlay" Content="PLAY" HorizontalAlignment="Left" VerticalAlignment="Top" Width="44" Height="41" Background="LightBlue" Click="ButtonPlay_Click"/>
+            </Grid>
+
+            <Grid Margin="10,92,256,171">
+                <Label x:Name="labelAvis_1" HorizontalAlignment="Left" Margin="157,2,0,0" VerticalAlignment="Top" Content="5" Width="21"/>
+                <Slider x:Name="slider_1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Height="27" SmallChange="1" ValueChanged="sliderAvis_ValueChanged" Minimum="0" Maximum="10" Value="5" Margin="58,28,0,0"/>
+                <Label x:Name="label_Avis_Max_1" Content="10" HorizontalAlignment="Left" Margin="183,27,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.783,1.41" Width="28"/>
+                <Label x:Name="label_Avis_Min_1" Content="0" HorizontalAlignment="Left" Margin="42,27,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="label_Title_Avis_1" Content="Chanson n°1" HorizontalAlignment="Left" Margin="42,2,0,0" VerticalAlignment="Top" Width="79"/>
+                <Button x:Name="btn_minus_1" Content="-" HorizontalAlignment="Left" Margin="4,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
+                <Button x:Name="btn_plus_1" Content="+" HorizontalAlignment="Left" Margin="224,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
+            </Grid>
+            <Grid Margin="10,162,256,101">
+                <Label x:Name="labelAvis_2" HorizontalAlignment="Left" Margin="157,2,0,0" VerticalAlignment="Top" Content="5" Width="21"/>
+                <Slider x:Name="slider_2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Height="27" SmallChange="1" ValueChanged="sliderAvis_ValueChanged" Minimum="0" Maximum="10" Value="5" Margin="58,28,0,0"/>
+                <Label x:Name="label_Avis_Max_2" Content="10" HorizontalAlignment="Left" Margin="183,27,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.783,1.41" Width="28"/>
+                <Label x:Name="label_Avis_Min_2" Content="0" HorizontalAlignment="Left" Margin="42,27,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="label_Title_Avis_2" Content="Chanson n°2" HorizontalAlignment="Left" Margin="42,2,0,0" VerticalAlignment="Top"/>
+                <Button x:Name="btn_minus_2" Content="-" HorizontalAlignment="Left" Margin="4,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
+                <Button x:Name="btn_plus_2" Content="+" HorizontalAlignment="Left" Margin="224,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
+            </Grid>
+            <Grid Margin="10,232,256,31">
+                <Label x:Name="labelAvis_3" HorizontalAlignment="Left" Margin="157,2,0,0" VerticalAlignment="Top" Content="5" Width="21"/>
+                <Slider x:Name="slider_3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Height="27" SmallChange="1" ValueChanged="sliderAvis_ValueChanged" Minimum="0" Maximum="10" Value="5" Margin="58,28,0,0"/>
+                <Label x:Name="label_Avis_Max_3" Content="10" HorizontalAlignment="Left" Margin="183,27,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.783,1.41" Width="28"/>
+                <Label x:Name="label_Avis_Min_3" Content="0" HorizontalAlignment="Left" Margin="42,27,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="label_Title_Avis_3" Content="Chanson n°3" HorizontalAlignment="Left" Margin="42,2,0,0" VerticalAlignment="Top"/>
+                <Button x:Name="btn_minus_3" Content="-" HorizontalAlignment="Left" Margin="4,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
+                <Button x:Name="btn_plus_3" Content="+" HorizontalAlignment="Left" Margin="224,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
+            </Grid>
+            <Grid Margin="10,302,256,-41">
+                <Label x:Name="labelAvis_4" HorizontalAlignment="Left" Margin="157,2,0,0" VerticalAlignment="Top" Content="5" Width="21"/>
+                <Slider x:Name="slider_4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Height="27" SmallChange="1" ValueChanged="sliderAvis_ValueChanged" Minimum="0" Maximum="10" Value="5" Margin="58,28,0,0"/>
+                <Label x:Name="label_Avis_Max_4" Content="10" HorizontalAlignment="Left" Margin="183,27,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.783,1.41" Width="28"/>
+                <Label x:Name="label_Avis_Min_4" Content="0" HorizontalAlignment="Left" Margin="42,27,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="label_Title_Avis_4" Content="Chanson n°4" HorizontalAlignment="Left" Margin="42,2,0,0" VerticalAlignment="Top"/>
+                <Button x:Name="btn_minus_4" Content="-" HorizontalAlignment="Left" Margin="4,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
+                <Button x:Name="btn_plus_4" Content="+" HorizontalAlignment="Left" Margin="224,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
+            </Grid>
+            <Grid Margin="310,92,-42,171">
+                <Label x:Name="labelAvis_5" HorizontalAlignment="Left" Margin="157,2,0,0" VerticalAlignment="Top" Content="5" Width="21"/>
+                <Slider x:Name="slider_5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Height="27" SmallChange="1" ValueChanged="sliderAvis_ValueChanged" Minimum="0" Maximum="10" Value="5" Margin="58,28,0,0"/>
+                <Label x:Name="label_Avis_Max_5" Content="10" HorizontalAlignment="Left" Margin="183,27,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.783,1.41" Width="28"/>
+                <Label x:Name="label_Avis_Min_5" Content="0" HorizontalAlignment="Left" Margin="42,27,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="label_Title_Avis_5" Content="Chanson n°5" HorizontalAlignment="Left" Margin="42,2,0,0" VerticalAlignment="Top"/>
+                <Button x:Name="btn_minus_5" Content="-" HorizontalAlignment="Left" Margin="4,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
+                <Button x:Name="btn_plus_5" Content="+" HorizontalAlignment="Left" Margin="224,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
+            </Grid>
+            <Grid Margin="310,162,-42,101">
+                <Label x:Name="labelAvis_6" HorizontalAlignment="Left" Margin="157,2,0,0" VerticalAlignment="Top" Content="5" Width="21"/>
+                <Slider x:Name="slider_6" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Height="27" SmallChange="1" ValueChanged="sliderAvis_ValueChanged" Minimum="0" Maximum="10" Value="5" Margin="58,28,0,0"/>
+                <Label x:Name="label_Avis_Max_6" Content="10" HorizontalAlignment="Left" Margin="183,27,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.783,1.41" Width="28"/>
+                <Label x:Name="label_Avis_Min_6" Content="0" HorizontalAlignment="Left" Margin="42,27,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="label_Title_Avis_6" Content="Chanson n°6" HorizontalAlignment="Left" Margin="42,2,0,0" VerticalAlignment="Top"/>
+                <Button x:Name="btn_minus_6" Content="-" HorizontalAlignment="Left" Margin="4,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
+                <Button x:Name="btn_plus_6" Content="+" HorizontalAlignment="Left" Margin="224,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
+            </Grid>
+            <Grid Margin="310,232,-42,31">
+                <Label x:Name="labelAvis_7" HorizontalAlignment="Left" Margin="157,2,0,0" VerticalAlignment="Top" Content="5" Width="21"/>
+                <Slider x:Name="slider_7" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Height="27" SmallChange="1" ValueChanged="sliderAvis_ValueChanged" Minimum="0" Maximum="10" Value="5" Margin="58,28,0,0"/>
+                <Label x:Name="label_Avis_Max_7" Content="10" HorizontalAlignment="Left" Margin="183,27,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.783,1.41" Width="28"/>
+                <Label x:Name="label_Avis_Min_7" Content="0" HorizontalAlignment="Left" Margin="42,27,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="label_Title_Avis_7" Content="Chanson n°7" HorizontalAlignment="Left" Margin="42,2,0,0" VerticalAlignment="Top"/>
+                <Button x:Name="btn_minus_7" Content="-" HorizontalAlignment="Left" Margin="4,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
+                <Button x:Name="btn_plus_7" Content="+" HorizontalAlignment="Left" Margin="224,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
+            </Grid>
+            <Grid Margin="310,302,-42,-39">
+                <Label x:Name="labelAvis_8" HorizontalAlignment="Left" Margin="157,2,0,0" VerticalAlignment="Top" Content="5" Width="21"/>
+                <Slider x:Name="slider_8" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Height="27" SmallChange="1" ValueChanged="sliderAvis_ValueChanged" Minimum="0" Maximum="10" Value="5" Margin="58,28,0,0"/>
+                <Label x:Name="label_Avis_Max_8" Content="10" HorizontalAlignment="Left" Margin="183,27,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.783,1.41" Width="28"/>
+                <Label x:Name="label_Avis_Min_8" Content="0" HorizontalAlignment="Left" Margin="42,27,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="label_Title_Avis_8" Content="Chanson n°8" HorizontalAlignment="Left" Margin="42,2,0,0" VerticalAlignment="Top"/>
+                <Button x:Name="btn_minus_8" Content="-" HorizontalAlignment="Left" Margin="4,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
+                <Button x:Name="btn_plus_8" Content="+" HorizontalAlignment="Left" Margin="224,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
+            </Grid>
+            <Grid Margin="10,27,674,443">
                 <Label x:Name="labelTempo" Content="460" HorizontalAlignment="Left" Margin="160,0,0,0" VerticalAlignment="Top" Width="34" OpacityMask="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}"/>
                 <Slider x:Name="sliderTempo"      HorizontalAlignment="Left" VerticalAlignment="Top" Width="148" Height="34" SmallChange="1" ValueChanged="sliderTempo_ValueChanged" Maximum="500" Value="460" Margin="17,27,0,0"/>
                 <Label x:Name="label_Copy3" Content="0" HorizontalAlignment="Left" Margin="0,23,0,0" VerticalAlignment="Top"/>
                 <Label x:Name="label" Content="500" HorizontalAlignment="Left" Margin="160,26,0,0" VerticalAlignment="Top" Width="34"/>
                 <Label x:Name="label1" Content="TEMPO" HorizontalAlignment="Left" Margin="0,1,0,0" VerticalAlignment="Top"/>
             </Grid>
-            <Grid Margin="21,162,311,98">
-                <Label x:Name="labelLengthSound" Content="25" HorizontalAlignment="Left" Margin="157,0,0,0" VerticalAlignment="Top" Width="28"/>
-                <Slider x:Name="sliderLengthNote" HorizontalAlignment="Left" VerticalAlignment="Top" Width="149" Margin="16,26,0,0" Height="33" SmallChange="1" ValueChanged="sliderLengthNote_ValueChanged" Minimum="5" Maximum="80" Value="25"/>
-                <Label x:Name="label_Copy1" Content="80" HorizontalAlignment="Left" Margin="157,23,0,0" VerticalAlignment="Top" Width="28" RenderTransformOrigin="0.571,0.5"/>
-                <Label x:Name="label_Copy2" Content="5" HorizontalAlignment="Left" Margin="0,23,0,0" VerticalAlignment="Top"/>
+
+            <Grid Margin="204,29,494,443">
+                <Label x:Name="labelLengthSound" Content="25" HorizontalAlignment="Left" VerticalAlignment="Top" Width="28" Margin="157,0,0,0"/>
+                <Slider x:Name="sliderLengthNote" HorizontalAlignment="Left" VerticalAlignment="Top" Width="149" Height="33" SmallChange="1" ValueChanged="sliderLengthNote_ValueChanged" Minimum="5" Maximum="80" Value="25" Margin="16,26,0,0"/>
+                <Label x:Name="label_Copy1" Content="80" HorizontalAlignment="Left" VerticalAlignment="Top" Width="28" RenderTransformOrigin="0.571,0.5" Margin="157,23,0,0"/>
+                <Label x:Name="label_Copy2" Content="5" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,23,0,0"/>
+                <Label x:Name="label3" Content="LENGTH NOTE" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.519,0.231"/>
             </Grid>
-            <Label x:Name="label2" Content="AVIS" HorizontalAlignment="Left" Margin="21,97,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="label3" Content="LENGTH NOTE" HorizontalAlignment="Left" Margin="21,162,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.519,0.231"/>
+
         </Grid>
     </Grid>
 </Window>

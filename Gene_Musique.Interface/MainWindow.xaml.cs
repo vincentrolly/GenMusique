@@ -25,8 +25,8 @@ namespace Gene_Musique.Interface
     {
         MediaPlayer mplayer;
         Boolean isPlaying;
-         int iNumber = 0;
-        static Boolean Avis;
+        int iNumberGeneration = 0;
+        //static Boolean Avis;
         static int tempo = 460;
         static int lengthNote = 25;
         static Random randomizer;
@@ -44,7 +44,7 @@ namespace Gene_Musique.Interface
             isPlaying = false;
             randomizer = new Random();
             randomizer.Next();
-            Avis = false;
+            //Avis = false;
             if(!Directory.Exists(directory))
             {
                 Directory.CreateDirectory(directory);
@@ -58,8 +58,15 @@ namespace Gene_Musique.Interface
             generatePopulationFile();
 
             //  Avis par défaut
-            labelAvis.Content = Math.Round(sliderAvis.Value, 0).ToString();
-            
+            labelAvis_1.Content = Math.Round(slider_1.Value, 0).ToString();
+            labelAvis_2.Content = Math.Round(slider_2.Value, 0).ToString();
+            labelAvis_3.Content = Math.Round(slider_3.Value, 0).ToString();
+            labelAvis_4.Content = Math.Round(slider_4.Value, 0).ToString();
+            labelAvis_5.Content = Math.Round(slider_5.Value, 0).ToString();
+            labelAvis_6.Content = Math.Round(slider_6.Value, 0).ToString();
+            labelAvis_7.Content = Math.Round(slider_7.Value, 0).ToString();
+            labelAvis_8.Content = Math.Round(slider_8.Value, 0).ToString();
+
             //  Tempo par défaut
             tempo = (int)Math.Round(sliderTempo.Value, 0);
             labelTempo.Content = tempo.ToString();
@@ -67,9 +74,6 @@ namespace Gene_Musique.Interface
             //  Longueur note par défaut
             lengthNote = (int)Math.Round(sliderLengthNote.Value, 0);
             labelLengthSound.Content = lengthNote.ToString();
-
-            //  Affichage du numéro de la chanson dans une textbox
-            labelNumberSong.Content = Math.Round((double)iNumber, 0).ToString();
             
             // On s'abonne à la fermeture du programme pour pouvoir nettoyer le répertoire et les fichiers midi
             this.Closed += MainWindow_Closed;
@@ -121,7 +125,7 @@ namespace Gene_Musique.Interface
         private void ButtonRecord_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-            dlg.FileName = "Piste"+this.iNumber; // Default file name
+            dlg.FileName = "Piste"+this.iNumberGeneration; // Default file name
             dlg.DefaultExt = ".midi"; // Default file extension
             dlg.Filter = "Midi song (.midi)|*.midi"; // Filter files by extension
 
@@ -131,7 +135,7 @@ namespace Gene_Musique.Interface
             // Process save file dialog box results
             if (result == true)
             {
-                File.Copy(directory+"/piste"+iNumber+".midi",dlg.FileName);
+                File.Copy(directory+"/piste"+iNumberGeneration+".midi",dlg.FileName);
             }
         }
 
@@ -174,7 +178,7 @@ namespace Gene_Musique.Interface
 
         private void PlayMusic()
         {
-            mplayer.Open(new Uri(directory + "/piste" + this.iNumber + ".midi", UriKind.Absolute));
+            mplayer.Open(new Uri(directory + "/piste" + this.iNumberGeneration + ".midi", UriKind.Absolute));
             isPlaying = true;
             mplayer.Play();
         }
@@ -186,78 +190,64 @@ namespace Gene_Musique.Interface
                 stop_and_delete_file();
 
             //  Attente pour delete file midi done
-            if (File.Exists(directory+ "/piste" + iNumber + ".midi"))
+            if (File.Exists(directory+ "/piste" + iNumberGeneration + ".midi"))
             {
-
-
                 PlayMusic();
             }
         }
 
         private void ButtonNext_Click(object sender, RoutedEventArgs e)
         {
-            if(Avis == true)
+
+            MessageBoxResult msg = MessageBox.Show("Voulez vous sauvegarder?", "Voulez vous sauvegarder cette génération", MessageBoxButton.YesNoCancel);
+            if (msg == MessageBoxResult.Yes)
             {
-                if (iNumber >= numberIndividu)
+
+                Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+                dlg.FileName = "generationMidi" + DateTime.Now.ToShortDateString(); // Default file name
+                dlg.DefaultExt = ".xml"; // Default file extension
+                dlg.Filter = "Xml document (.xml)|*.xml"; // Filter files by extension
+
+                // Show save file dialog box
+                Nullable<bool> result = dlg.ShowDialog();
+
+                // Process save file dialog box results
+                if (result == true)
                 {
-                    MessageBoxResult msg = MessageBox.Show("Voulez vous sauvegarder?", "Voulez vous sauvegarder cette génération", MessageBoxButton.YesNoCancel);
-                    if (msg == MessageBoxResult.Yes)
-                    {
-
-                        Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-                        dlg.FileName = "generationMidi" + DateTime.Now.ToShortDateString(); // Default file name
-                        dlg.DefaultExt = ".xml"; // Default file extension
-                        dlg.Filter = "Xml document (.xml)|*.xml"; // Filter files by extension
-
-                        // Show save file dialog box
-                        Nullable<bool> result = dlg.ShowDialog();
-
-                        // Process save file dialog box results
-                        if (result == true)
-                        {
-                            this.genMusique.SavePopulation(dlg.FileName);
-                            genMusique.Accouplement();
-                            generatePopulationFile();
-                            iNumber = 0;
-                        }
-                    }
-                    else if (msg == MessageBoxResult.No)
-                    {
-                        genMusique.Accouplement();
-                        generatePopulationFile();
-                        iNumber = 0;
-                    }
-                    else
-                    {
-
-                    }
-
-                }
-                else
-                {
-                    iNumber++;
-                    Avis = false;
+                    this.genMusique.SavePopulation(dlg.FileName);
+                    genMusique.Accouplement();
+                    generatePopulationFile();
+                    iNumberGeneration = 0;
                 }
             }
-          labelNumberSong.Content = Math.Round((double)iNumber, 0).ToString();
+            else if (msg == MessageBoxResult.No)
+            {
+                genMusique.Accouplement();
+                generatePopulationFile();
+                iNumberGeneration = 0;
+            }
+          labelNumberGeneration.Content = Math.Round((double)iNumberGeneration, 0).ToString();
         }
-/*
-        private void sauverFichier(int indice)
-        {
-            Individu[] toto = genMusique.GetPopulation();
 
-            saveFileDialog.ShowDialog();
-            string nomFichier = saveFileDialog.FileName;
-            Debug.WriteLine("nomFichier : " + nomFichier);  //This is the instrument value
-            lm.enregistreFichier(unIndividu, nomFichier);
-            saveFileDialog.Dispose();
-            saveFileDialog.Reset();
-        }
-        */
         private void sliderAvis_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            Avis = true;
-            labelAvis.Content = Math.Round(sliderAvis.Value, 0).ToString();
+            Slider slider = sender as Slider;
+            if(slider == slider_1)
+                labelAvis_1.Content = Math.Round(slider_1.Value, 0).ToString();
+            else if (slider == slider_2)
+                labelAvis_2.Content = Math.Round(slider_2.Value, 0).ToString();
+            else if (slider == slider_3)
+                labelAvis_3.Content = Math.Round(slider_3.Value, 0).ToString();
+            else if (slider == slider_4)
+                labelAvis_4.Content = Math.Round(slider_4.Value, 0).ToString();
+            else if (slider == slider_5)
+                labelAvis_5.Content = Math.Round(slider_5.Value, 0).ToString();
+            else if (slider == slider_6)
+                labelAvis_6.Content = Math.Round(slider_6.Value, 0).ToString();
+            else if (slider == slider_7)
+                labelAvis_7.Content = Math.Round(slider_7.Value, 0).ToString();
+            else if (slider == slider_8)
+                labelAvis_8.Content = Math.Round(slider_8.Value, 0).ToString();
         }
 
         private void sliderTempo_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -286,25 +276,185 @@ namespace Gene_Musique.Interface
         private void save_as_Click(object sender, RoutedEventArgs e)
         {
             SavePopulationXml();
-    }
-    private void SavePopulationXml()
-    {
-        Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-        dlg.FileName = "generationMidi" + DateTime.Now.ToShortDateString(); // Default file name
-        dlg.DefaultExt = ".xml"; // Default file extension
-        dlg.Filter = "Xml document (.xml)|*.xml"; // Filter files by extension
-
-        // Show save file dialog box
-        Nullable<bool> result = dlg.ShowDialog();
-
-        // Process save file dialog box results
-        if (result == true)
+        }
+        private void SavePopulationXml()
         {
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.FileName = "generationMidi" + DateTime.Now.ToShortDateString(); // Default file name
+            dlg.DefaultExt = ".xml"; // Default file extension
+            dlg.Filter = "Xml document (.xml)|*.xml"; // Filter files by extension
 
-            this.genMusique.SavePopulation(dlg.FileName);
+            // Show save file dialog box
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Process save file dialog box results
+            if (result == true)
+                this.genMusique.SavePopulation(dlg.FileName);
+        }
+
+        private void btn_Avis_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            if(button == btn_plus_1)
+            {
+                int value_avis = Convert.ToInt32(labelAvis_1.Content);
+                if (value_avis < 10)
+                {
+                    value_avis++;
+                    labelAvis_1.Content = value_avis.ToString();
+                    slider_1.Value = (double)value_avis;
+                }
+            }
+            else if (button == btn_minus_1)
+            {
+                int value_avis = Convert.ToInt32(labelAvis_1.Content);
+                if (value_avis > 0)
+                {
+                    value_avis--;
+                    labelAvis_1.Content = value_avis.ToString();
+                    slider_1.Value = (double)value_avis;
+                }
+            }
+            else if (button == btn_plus_2)
+            {
+                int value_avis = Convert.ToInt32(labelAvis_2.Content);
+                if (value_avis < 10)
+                {
+                    value_avis++;
+                    labelAvis_2.Content = value_avis.ToString();
+                    slider_2.Value = (double)value_avis;
+                }
+            }
+            else if (button == btn_minus_2)
+            {
+                int value_avis = Convert.ToInt32(labelAvis_2.Content);
+                if (value_avis > 0)
+                {
+                    value_avis--;
+                    labelAvis_2.Content = value_avis.ToString();
+                    slider_2.Value = (double)value_avis;
+                }
+            }
+            else if (button == btn_plus_3)
+            {
+                int value_avis = Convert.ToInt32(labelAvis_3.Content);
+                if (value_avis < 10)
+                {
+                    value_avis++;
+                    labelAvis_3.Content = value_avis.ToString();
+                    slider_3.Value = (double)value_avis;
+                }
+            }
+            else if (button == btn_minus_3)
+            {
+                int value_avis = Convert.ToInt32(labelAvis_3.Content);
+                if (value_avis > 0)
+                {
+                    value_avis--;
+                    labelAvis_3.Content = value_avis.ToString();
+                    slider_3.Value = (double)value_avis;
+                }
+            }
+            else if (button == btn_plus_4)
+            {
+                int value_avis = Convert.ToInt32(labelAvis_4.Content);
+                if (value_avis < 10)
+                {
+                    value_avis++;
+                    labelAvis_4.Content = value_avis.ToString();
+                    slider_4.Value = (double)value_avis;
+                }
+            }
+            else if (button == btn_minus_4)
+            {
+                int value_avis = Convert.ToInt32(labelAvis_4.Content);
+                if (value_avis > 0)
+                {
+                    value_avis--;
+                    labelAvis_4.Content = value_avis.ToString();
+                    slider_4.Value = (double)value_avis;
+                }
+            }
+            else if (button == btn_plus_5)
+            {
+                int value_avis = Convert.ToInt32(labelAvis_5.Content);
+                if (value_avis < 10)
+                {
+                    value_avis++;
+                    labelAvis_5.Content = value_avis.ToString();
+                    slider_5.Value = (double)value_avis;
+                }
+            }
+            else if (button == btn_minus_5)
+            {
+                int value_avis = Convert.ToInt32(labelAvis_5.Content);
+                if (value_avis > 0)
+                {
+                    value_avis--;
+                    labelAvis_5.Content = value_avis.ToString();
+                    slider_5.Value = (double)value_avis;
+                }
+            }
+            else if (button == btn_plus_6)
+            {
+                int value_avis = Convert.ToInt32(labelAvis_6.Content);
+                if (value_avis < 10)
+                {
+                    value_avis++;
+                    labelAvis_6.Content = value_avis.ToString();
+                    slider_6.Value = (double)value_avis;
+                }
+            }
+            else if (button == btn_minus_6)
+            {
+                int value_avis = Convert.ToInt32(labelAvis_6.Content);
+                if (value_avis > 0)
+                {
+                    value_avis--;
+                    labelAvis_6.Content = value_avis.ToString();
+                    slider_6.Value = (double)value_avis;
+                }
+            }
+            else if (button == btn_plus_7)
+            {
+                int value_avis = Convert.ToInt32(labelAvis_7.Content);
+                if (value_avis < 10)
+                {
+                    value_avis++;
+                    labelAvis_7.Content = value_avis.ToString();
+                    slider_7.Value = (double)value_avis;
+                }
+            }
+            else if (button == btn_minus_7)
+            {
+                int value_avis = Convert.ToInt32(labelAvis_7.Content);
+                if (value_avis > 0)
+                {
+                    value_avis--;
+                    labelAvis_7.Content = value_avis.ToString();
+                    slider_7.Value = (double)value_avis;
+                }
+            }
+            else if (button == btn_plus_8)
+            {
+                int value_avis = Convert.ToInt32(labelAvis_8.Content);
+                if (value_avis < 10)
+                {
+                    value_avis++;
+                    labelAvis_8.Content = value_avis.ToString();
+                    slider_8.Value = (double)value_avis;
+                }
+            }
+            else if (button == btn_minus_8)
+            {
+                int value_avis = Convert.ToInt32(labelAvis_8.Content);
+                if (value_avis > 0)
+                {
+                    value_avis--;
+                    labelAvis_8.Content = value_avis.ToString();
+                    slider_8.Value = (double)value_avis;
+                }
+            }
         }
     }
-
-
-}
 }

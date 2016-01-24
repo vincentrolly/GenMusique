@@ -25,7 +25,7 @@ namespace Gene_Musique.Interface
     {
         MediaPlayer mplayer;
         Boolean isPlaying;
-        int iNumberGeneration = 0;
+        int iNumberMusique = 0;
         //static Boolean Avis;
         static int tempo = 460;
         static int lengthNote = 25;
@@ -125,7 +125,7 @@ namespace Gene_Musique.Interface
         private void ButtonRecord_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-            dlg.FileName = "Piste"+this.iNumberGeneration; // Default file name
+            dlg.FileName = "Piste"+this.iNumberMusique; // Default file name
             dlg.DefaultExt = ".midi"; // Default file extension
             dlg.Filter = "Midi song (.midi)|*.midi"; // Filter files by extension
 
@@ -135,7 +135,7 @@ namespace Gene_Musique.Interface
             // Process save file dialog box results
             if (result == true)
             {
-                File.Copy(directory+"/piste"+iNumberGeneration+".midi",dlg.FileName);
+                File.Copy(directory+"\\piste"+ iNumberMusique + ".midi",dlg.FileName);
             }
         }
 
@@ -178,7 +178,7 @@ namespace Gene_Musique.Interface
 
         private void PlayMusic()
         {
-            mplayer.Open(new Uri(directory + "/piste" + this.iNumberGeneration + ".midi", UriKind.Absolute));
+            mplayer.Open(new Uri(directory + "/piste" + this.iNumberMusique + ".midi", UriKind.Absolute));
             isPlaying = true;
             mplayer.Play();
         }
@@ -190,7 +190,7 @@ namespace Gene_Musique.Interface
                 stop_and_delete_file();
 
             //  Attente pour delete file midi done
-            if (File.Exists(directory+ "/piste" + iNumberGeneration + ".midi"))
+            if (File.Exists(directory+ "/piste" + iNumberMusique + ".midi"))
             {
                 PlayMusic();
             }
@@ -217,16 +217,16 @@ namespace Gene_Musique.Interface
                     this.genMusique.SavePopulation(dlg.FileName);
                     genMusique.Accouplement();
                     generatePopulationFile();
-                    iNumberGeneration = 0;
+                    iNumberMusique = 0;
                 }
             }
             else if (msg == MessageBoxResult.No)
             {
                 genMusique.Accouplement();
                 generatePopulationFile();
-                iNumberGeneration = 0;
+                iNumberMusique = 0;
             }
-          labelNumberGeneration.Content = Math.Round((double)iNumberGeneration, 0).ToString();
+          labelNumberGeneration.Content = Math.Round((double)iNumberMusique, 0).ToString();
         }
 
         private void sliderAvis_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)

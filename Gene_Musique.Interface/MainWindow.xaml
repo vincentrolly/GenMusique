@@ -27,8 +27,8 @@
                 <MenuItem Header="?" />
             </Menu>
             <Grid Margin="21,36,406,253">
-                <Label x:Name="labelChansonTitle" Content="Génération n°" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <Label x:Name="labelNumberGeneration" Content="0" HorizontalAlignment="Left" Margin="80,0,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="labelChansonTitle" Content="Musique n°" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Label x:Name="labelNumberGeneration" Content="0" HorizontalAlignment="Left" Margin="65,0,0,0" VerticalAlignment="Top"/>
             </Grid>
 
             <Grid Margin="195,27,187,241">
@@ -109,7 +109,7 @@
                 <Button x:Name="btn_minus_8" Content="-" HorizontalAlignment="Left" Margin="4,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
                 <Button x:Name="btn_plus_8" Content="+" HorizontalAlignment="Left" Margin="224,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
             </Grid>
-            <Grid Margin="10,27,674,443">
+            <Grid Margin="351,0,-5,269" RenderTransformOrigin="0.5,0.5">
                 <Label x:Name="labelTempo" Content="460" HorizontalAlignment="Left" Margin="160,0,0,0" VerticalAlignment="Top" Width="34" OpacityMask="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}"/>
                 <Slider x:Name="sliderTempo"      HorizontalAlignment="Left" VerticalAlignment="Top" Width="148" Height="34" SmallChange="1" ValueChanged="sliderTempo_ValueChanged" Maximum="500" Value="460" Margin="17,27,0,0"/>
                 <Label x:Name="label_Copy3" Content="0" HorizontalAlignment="Left" Margin="0,23,0,0" VerticalAlignment="Top"/>
@@ -117,10 +117,10 @@
                 <Label x:Name="label1" Content="TEMPO" HorizontalAlignment="Left" Margin="0,1,0,0" VerticalAlignment="Top"/>
             </Grid>
 
-            <Grid Margin="204,29,494,443">
-                <Label x:Name="labelLengthSound" Content="25" HorizontalAlignment="Left" VerticalAlignment="Top" Width="28" Margin="157,0,0,0"/>
+            <Grid Margin="351,41,-10,232">
+                <Label x:Name="labelLengthSound" Content="25" HorizontalAlignment="Left" VerticalAlignment="Top" Width="28" Margin="162,0,0,0"/>
                 <Slider x:Name="sliderLengthNote" HorizontalAlignment="Left" VerticalAlignment="Top" Width="149" Height="33" SmallChange="1" ValueChanged="sliderLengthNote_ValueChanged" Minimum="5" Maximum="80" Value="25" Margin="16,26,0,0"/>
-                <Label x:Name="label_Copy1" Content="80" HorizontalAlignment="Left" VerticalAlignment="Top" Width="28" RenderTransformOrigin="0.571,0.5" Margin="157,23,0,0"/>
+                <Label x:Name="label_Copy1" Content="80" HorizontalAlignment="Left" VerticalAlignment="Top" Width="28" RenderTransformOrigin="0.571,0.5" Margin="162,23,0,0"/>
                 <Label x:Name="label_Copy2" Content="5" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,23,0,0"/>
                 <Label x:Name="label3" Content="LENGTH NOTE" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.519,0.231"/>
             </Grid>

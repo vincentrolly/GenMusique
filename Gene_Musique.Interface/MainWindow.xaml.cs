@@ -185,6 +185,13 @@ namespace Gene_Musique.Interface
 
         private void ButtonPlay_Click(object sender, RoutedEventArgs e)
         {
+            Button button = sender as Button;
+            String original = button.Name.ToString();
+            int pos = original.IndexOf("_");
+            String news = original.Substring(pos + 1);
+            iNumberMusique = Convert.ToInt32(news);
+
+            //if(button.Content)
             // s'il y a un fichier en cours de lecture on l'arrête 
             if (isPlaying == true)
                 stop_and_delete_file();

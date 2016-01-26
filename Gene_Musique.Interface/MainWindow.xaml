@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Gene_Musique.Interface"
         mc:Ignorable="d"
-        Title="Algorithme génétique By DEFRANCE Lucas et ROLLY-VACHEZ Vincent" Height="421" Width="677.667">
+        Title="Algorithme génétique By DEFRANCE Lucas et ROLLY-VACHEZ Vincent" Height="449.4" Width="708.067">
 
     <Grid Margin="0,0,95,4">
 
@@ -32,19 +32,32 @@
             </Grid>
 
             <Grid Margin="195,27,187,241">
-                <Button x:Name="ButtonNext" Background="LightBlue" Content="NEXT" HorizontalAlignment="Left" VerticalAlignment="Top" Width="42" Height="41" Click="ButtonNext_Click" Margin="98,0,0,0"/>
-                <Button x:Name="ButtonRecord" Background="LightBlue" Content="SAVE" HorizontalAlignment="Left" Margin="49,0,0,0" VerticalAlignment="Top" Width="44" Height="41" Click="ButtonRecord_Click"/>
+                <Button x:Name="ButtonNext" Background="LightBlue" Content="NEXT" HorizontalAlignment="Left" VerticalAlignment="Top" Width="86" Height="28" Click="ButtonNext_Click" Margin="405,343,-299,-278.6"/>
+                <Button x:Name="ButtonRecord_8" Background="LightBlue" Content="SAVE" HorizontalAlignment="Left" Margin="385,295,-264.4,-252.4" VerticalAlignment="Top" Width="41" Height="21" Click="ButtonRecord_Click"/>
+                <Button x:Name="ButtonRecord_1" Background="LightBlue" Content="SAVE" HorizontalAlignment="Right" Margin="-17,48,168,0" VerticalAlignment="Top" Width="41" Height="21" Click="ButtonRecord_Click"/>
+                <Button x:Name="ButtonRecord_2" Background="LightBlue" Content="SAVE" HorizontalAlignment="Right" Margin="-17,119,168,-47.6" VerticalAlignment="Top" Width="41" Height="21" Click="ButtonRecord_Click"/>
+                <Button x:Name="ButtonRecord_3" Background="LightBlue" Content="SAVE" HorizontalAlignment="Right" Margin="-17,190,168,-118.6" VerticalAlignment="Top" Width="41" Height="21" Click="ButtonRecord_Click"/>
+                <Button x:Name="ButtonRecord_4" Background="LightBlue" Content="SAVE" HorizontalAlignment="Right" Margin="-17,257,168,-185.6" VerticalAlignment="Top" Width="41" Height="21" Click="ButtonRecord_Click"/>
+                <Button x:Name="ButtonRecord_0" Background="LightBlue" Content="SAVE" HorizontalAlignment="Right" Margin="-17,-15,168,0" VerticalAlignment="Top" Width="41" Height="21" Click="ButtonRecord_Click"/>
+                <Button x:Name="ButtonRecord_9" Background="LightBlue" Content="SAVE" HorizontalAlignment="Left" Margin="278,346,-127,-274.6" VerticalAlignment="Top" Width="41" Height="21" Click="ButtonRecord_Click"/>
             </Grid>
 
             <Grid Margin="10,92,256,171">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="172*"/>
+                    <ColumnDefinition Width="11*"/>
+                    <ColumnDefinition Width="125*"/>
+                </Grid.ColumnDefinitions>
                 <Label x:Name="labelAvis_1" HorizontalAlignment="Left" Margin="126,2,0,0" VerticalAlignment="Top" Content="5" Width="21"/>
-                <Slider x:Name="slider_1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Height="27" SmallChange="1" ValueChanged="sliderAvis_ValueChanged" Minimum="0" Maximum="10" Value="5" Margin="58,28,0,0"/>
-                <Label x:Name="label_Avis_Max_1" Content="10" HorizontalAlignment="Left" Margin="183,27,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.783,1.41" Width="28"/>
+                <Slider x:Name="slider_1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Height="27" SmallChange="1" ValueChanged="sliderAvis_ValueChanged" Minimum="0" Maximum="10" Value="5" Margin="58,28,0,0" Grid.ColumnSpan="3"/>
+                <Label x:Name="label_Avis_Max_1" Content="10" HorizontalAlignment="Left" Margin="0.2,27,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.783,1.41" Width="28" Grid.Column="2"/>
                 <Label x:Name="label_Avis_Min_1" Content="0" HorizontalAlignment="Left" Margin="42,27,0,0" VerticalAlignment="Top"/>
                 <Label x:Name="label_Title_Avis_1" Content="Chanson n°1" HorizontalAlignment="Left" Margin="42,2,0,0" VerticalAlignment="Top" Width="79"/>
                 <Button x:Name="btn_minus_1" Content="-" HorizontalAlignment="Left" Margin="4,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
-                <Button x:Name="btn_plus_1" Content="+" HorizontalAlignment="Left" Margin="224,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
-                <Button x:Name="buttonPlay_1" Content="PLAY" HorizontalAlignment="Left" Margin="167,10,0,0" VerticalAlignment="Top" Width="44" Background="LightBlue" Click="ButtonPlay_Click"/>
+                <Button x:Name="btn_plus_1" Content="+" HorizontalAlignment="Left" Margin="41.2,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click" Grid.Column="2"/>
+                <Button x:Name="buttonPlay_1" Content="PLAY" HorizontalAlignment="Left" Margin="167,10,0,0" VerticalAlignment="Top" Width="44" Background="LightBlue" Click="ButtonPlay_Click" Grid.ColumnSpan="3"/>
+                <Button x:Name="buttonPlay_0" Content="PLAY" HorizontalAlignment="Left" Margin="167,-56,0,0" VerticalAlignment="Top" Width="44" Background="LightBlue" Click="ButtonPlay_Click" Grid.ColumnSpan="3"/>
+                
             </Grid>
             <Grid Margin="10,162,256,101">
                 <Label x:Name="labelAvis_2" HorizontalAlignment="Left" Margin="126,2,0,0" VerticalAlignment="Top" Content="5" Width="21"/>
@@ -115,6 +128,8 @@
                 <Button x:Name="btn_minus_8" Content="-" HorizontalAlignment="Left" Margin="4,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
                 <Button x:Name="btn_plus_8" Content="+" HorizontalAlignment="Left" Margin="224,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
                 <Button x:Name="buttonPlay_8" Content="PLAY" HorizontalAlignment="Left" Margin="167,10,0,0" VerticalAlignment="Top" Width="44" Background="LightBlue" Click="ButtonPlay_Click"/>
+                <Label x:Name="label_Title_Avis_9" Content="Chanson 9 :" HorizontalAlignment="Left" Margin="-36,61,0,0" VerticalAlignment="Top"/>
+                <Button x:Name="buttonPlay_9" Content="PLAY" HorizontalAlignment="Left" Margin="103,67,0,0" VerticalAlignment="Top" Width="44" Background="LightBlue" Click="ButtonPlay_Click"/>
             </Grid>
             <Grid Margin="351,0,-5,269" RenderTransformOrigin="0.5,0.5">
                 <Label x:Name="labelTempo" Content="460" HorizontalAlignment="Left" Margin="160,0,0,0" VerticalAlignment="Top" Width="34" OpacityMask="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}"/>
@@ -131,7 +146,15 @@
                 <Label x:Name="label_Copy2" Content="5" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,23,0,0"/>
                 <Label x:Name="label3" Content="LENGTH NOTE" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.519,0.231"/>
             </Grid>
+            <Grid Margin="310,302,-42,-39">
+                
+               
+               
+            </Grid>
 
         </Grid>
+        <Button x:Name="ButtonRecord_7" Background="LightBlue" Content="SAVE" HorizontalAlignment="Left" Margin="584,242,-47.2,0" VerticalAlignment="Top" Width="41" Height="21" Click="ButtonRecord_Click"/>
+        <Button x:Name="ButtonRecord_6" Background="LightBlue" Content="SAVE" HorizontalAlignment="Left" Margin="584,166,-47.2,0" VerticalAlignment="Top" Width="41" Height="21" Click="ButtonRecord_Click"/>
+        <Button x:Name="ButtonRecord_5" Background="LightBlue" Content="SAVE" HorizontalAlignment="Left" Margin="596,95,-59.2,0" VerticalAlignment="Top" Width="41" Height="21" Click="ButtonRecord_Click"/>
     </Grid>
 </Window>

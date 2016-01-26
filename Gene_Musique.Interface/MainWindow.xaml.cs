@@ -56,6 +56,7 @@ namespace Gene_Musique.Interface
             // récupération du nombre d'individu
             numberIndividu = genMusique.GetNumberIndividu();
             generatePopulationFile();
+            
 
             //  Avis par défaut
             labelAvis_1.Content = Math.Round(slider_1.Value, 0).ToString();
@@ -100,7 +101,7 @@ namespace Gene_Musique.Interface
         // Lancé lorsque le fichier a fini sa lecture, pour le fermer proprement
         void mplayer_MediaEnded(object sender, EventArgs e)
         {
-            stop_and_delete_file();
+            Stop_music();
         }
 
         //  Stop lecture en cours + delete temporary midi file
@@ -124,8 +125,10 @@ namespace Gene_Musique.Interface
 
         private void ButtonRecord_Click(object sender, RoutedEventArgs e)
         {
+            Button btnDeclencheur = (Button)sender;
+            int indexMusicTOSave = int.Parse(btnDeclencheur.Name.Split('_')[1]);
             Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-            dlg.FileName = "Piste"+this.iNumberMusique; // Default file name
+            dlg.FileName = "Piste"+ indexMusicTOSave+"midi"; // Default file name
             dlg.DefaultExt = ".midi"; // Default file extension
             dlg.Filter = "Midi song (.midi)|*.midi"; // Filter files by extension
 
@@ -135,7 +138,7 @@ namespace Gene_Musique.Interface
             // Process save file dialog box results
             if (result == true)
             {
-                File.Copy(directory+"\\piste"+ iNumberMusique + ".midi",dlg.FileName);
+                File.Copy(directory+"\\piste"+ indexMusicTOSave + ".midi",dlg.FileName);
             }
         }
 
@@ -176,9 +179,9 @@ namespace Gene_Musique.Interface
             objWriter = null;
         }
 
-        private void PlayMusic()
+        private void PlayMusic(int INumberMusic)
         {
-            mplayer.Open(new Uri(directory + "/piste" + this.iNumberMusique + ".midi", UriKind.Absolute));
+            mplayer.Open(new Uri(directory + "/piste" + INumberMusic + ".midi", UriKind.Absolute));
             isPlaying = true;
             mplayer.Play();
         }
@@ -186,21 +189,25 @@ namespace Gene_Musique.Interface
         private void ButtonPlay_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-            String original = button.Name.ToString();
-            int pos = original.IndexOf("_");
-            String news = original.Substring(pos + 1);
-            iNumberMusique = Convert.ToInt32(news);
+            int INumberMusic = int.Parse(button.Name.Split('_')[1]);
 
             //if(button.Content)
             // s'il y a un fichier en cours de lecture on l'arrête 
             if (isPlaying == true)
-                stop_and_delete_file();
+                Stop_music();
 
             //  Attente pour delete file midi done
-            if (File.Exists(directory+ "/piste" + iNumberMusique + ".midi"))
+            if (File.Exists(directory+ "/piste" + INumberMusic + ".midi"))
             {
-                PlayMusic();
+                PlayMusic(INumberMusic);
             }
+        }
+
+        private void Stop_music()
+        {
+            mplayer.Stop();
+            mplayer.Close();
+            isPlaying = false;
         }
 
         private void ButtonNext_Click(object sender, RoutedEventArgs e)
@@ -221,6 +228,7 @@ namespace Gene_Musique.Interface
                 // Process save file dialog box results
                 if (result == true)
                 {
+                    stop_and_delete_file();
                     this.genMusique.SavePopulation(dlg.FileName);
                     genMusique.Accouplement();
                     generatePopulationFile();
@@ -229,6 +237,7 @@ namespace Gene_Musique.Interface
             }
             else if (msg == MessageBoxResult.No)
             {
+                stop_and_delete_file();
                 genMusique.Accouplement();
                 generatePopulationFile();
                 iNumberMusique = 0;

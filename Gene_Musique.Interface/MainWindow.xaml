@@ -41,7 +41,7 @@
                 <Label x:Name="label_Title_Avis_0" Content="Chanson n°1" HorizontalAlignment="Left" Margin="41,2,0,0" VerticalAlignment="Top" Width="79"/>
                 <Button x:Name="btn_minus_0" Content="-" HorizontalAlignment="Left" Margin="4,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
                 <Button x:Name="btn_plus_0" Content="+" HorizontalAlignment="Left" Margin="238,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
-                <Button x:Name="buttonPlay_0" Content="PLAY" HorizontalAlignment="Left" Margin="153,4,0,0" VerticalAlignment="Top" Width="37" Background="LightBlue" Click="ButtonPlay_Click"/>
+                <Button x:Name="buttonPlay_0" Content="PLAY" HorizontalAlignment="Left" Margin="153,4,0,0" VerticalAlignment="Top" Width="37" Background="LightBlue" Click="ButtonPlay_Click" ToolTipOpening="buttonPlay_1_ToolTipOpening"/>
                 <Button x:Name="ButtonRecord_0" Background="LightBlue" Content="SAVE" HorizontalAlignment="Left" Margin="195,4,0,0" VerticalAlignment="Top" Width="36" Height="21" Click="ButtonRecord_Click"/>
             </Grid>
             <Grid Margin="10,162,215,162">
@@ -52,7 +52,7 @@
                 <Label x:Name="label_Title_Avis_1" Content="Chanson n°2" HorizontalAlignment="Left" Margin="41,2,0,0" VerticalAlignment="Top"  Width="79"/>
                 <Button x:Name="btn_minus_1" Content="-" HorizontalAlignment="Left" Margin="4,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
                 <Button x:Name="btn_plus_1" Content="+" HorizontalAlignment="Left" Margin="238,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
-                <Button x:Name="buttonPlay_1" Content="PLAY" HorizontalAlignment="Left" Margin="153,4,0,0" VerticalAlignment="Top" Width="37" Background="LightBlue" Click="ButtonPlay_Click"/>
+                <Button x:Name="buttonPlay_1" Content="PLAY" HorizontalAlignment="Left" Margin="153,4,0,0" VerticalAlignment="Top" Width="37" Background="LightBlue" Click="ButtonPlay_Click" ToolTipOpening="buttonPlay_1_ToolTipOpening"/>
                 <Button x:Name="ButtonRecord_1" Background="LightBlue" Content="SAVE" HorizontalAlignment="Left" Margin="195,4,0,0" VerticalAlignment="Top" Width="36" Height="21" Click="ButtonRecord_Click"/>
             </Grid>
             <Grid Margin="10,232,215,92">
@@ -63,7 +63,7 @@
                 <Label x:Name="label_Title_Avis_2" Content="Chanson n°3" HorizontalAlignment="Left" Margin="41,2,0,0" VerticalAlignment="Top"  Width="79"/>
                 <Button x:Name="btn_minus_2" Content="-" HorizontalAlignment="Left" Margin="4,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
                 <Button x:Name="btn_plus_2" Content="+" HorizontalAlignment="Left" Margin="238,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
-                <Button x:Name="buttonPlay_2" Content="PLAY" HorizontalAlignment="Left" Margin="153,4,0,0" VerticalAlignment="Top" Width="37" Background="LightBlue" Click="ButtonPlay_Click"/>
+                <Button x:Name="buttonPlay_2" Content="PLAY" HorizontalAlignment="Left" Margin="153,4,0,0" VerticalAlignment="Top" Width="37" Background="LightBlue" Click="ButtonPlay_Click" ToolTipOpening="buttonPlay_1_ToolTipOpening" />
                 <Button x:Name="ButtonRecord_2" Background="LightBlue" Content="SAVE" HorizontalAlignment="Left" Margin="195,4,0,0" VerticalAlignment="Top" Width="36" Height="21" Click="ButtonRecord_Click"/>
             </Grid>
             <Grid Margin="10,302,215,22">
@@ -74,7 +74,7 @@
                 <Label x:Name="label_Title_Avis_3" Content="Chanson n°4" HorizontalAlignment="Left" Margin="41,2,0,0" VerticalAlignment="Top"  Width="79"/>
                 <Button x:Name="btn_minus_3" Content="-" HorizontalAlignment="Left" Margin="4,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
                 <Button x:Name="btn_plus_3" Content="+" HorizontalAlignment="Left" Margin="238,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
-                <Button x:Name="buttonPlay_3" Content="PLAY" HorizontalAlignment="Left" Margin="153,4,0,0" VerticalAlignment="Top" Width="37" Background="LightBlue" Click="ButtonPlay_Click"/>
+                <Button x:Name="buttonPlay_3" Content="PLAY" HorizontalAlignment="Left" Margin="153,4,0,0" VerticalAlignment="Top" Width="37" Background="LightBlue" Click="ButtonPlay_Click" ToolTipOpening="buttonPlay_1_ToolTipOpening"/>
                 <Button x:Name="ButtonRecord_3" Background="LightBlue" Content="SAVE" HorizontalAlignment="Left" Margin="195,4,0,0" VerticalAlignment="Top" Width="36" Height="21" Click="ButtonRecord_Click"/>
             </Grid>
             <Grid Margin="10,372,215,-48">
@@ -85,7 +85,7 @@
                 <Label x:Name="label_Title_Avis_4" Content="Chanson n°5" HorizontalAlignment="Left" Margin="41,2,0,0" VerticalAlignment="Top"  Width="79"/>
                 <Button x:Name="btn_minus_4" Content="-" HorizontalAlignment="Left" Margin="4,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
                 <Button x:Name="btn_plus_4" Content="+" HorizontalAlignment="Left" Margin="238,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
-                <Button x:Name="buttonPlay_4" Content="PLAY" HorizontalAlignment="Left" Margin="153,4,0,0" VerticalAlignment="Top" Width="37" Background="LightBlue" Click="ButtonPlay_Click"/>
+                <Button x:Name="buttonPlay_4" Content="PLAY" HorizontalAlignment="Left" Margin="153,4,0,0" VerticalAlignment="Top" Width="37" Background="LightBlue" Click="ButtonPlay_Click" ToolTipOpening="buttonPlay_1_ToolTipOpening"/>
                 <Button x:Name="ButtonRecord_4" Background="LightBlue" Content="SAVE" HorizontalAlignment="Left" Margin="195,4,0,0" VerticalAlignment="Top" Width="36" Height="21" Click="ButtonRecord_Click"/>
             </Grid>
             <Grid Margin="330,92,-105,232">
@@ -96,7 +96,7 @@
                 <Label x:Name="label_Title_Avis_5" Content="Chanson n°6" HorizontalAlignment="Left" Margin="41,2,0,0" VerticalAlignment="Top"  Width="79"/>
                 <Button x:Name="btn_minus_5" Content="-" HorizontalAlignment="Left" Margin="4,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
                 <Button x:Name="btn_plus_5" Content="+" HorizontalAlignment="Left" Margin="238,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
-                <Button x:Name="buttonPlay_5" Content="PLAY" HorizontalAlignment="Left" Margin="153,4,0,0" VerticalAlignment="Top" Width="37" Background="LightBlue" Click="ButtonPlay_Click"/>
+                <Button x:Name="buttonPlay_5" Content="PLAY" HorizontalAlignment="Left" Margin="153,4,0,0" VerticalAlignment="Top" Width="37" Background="LightBlue" Click="ButtonPlay_Click" ToolTipOpening="buttonPlay_1_ToolTipOpening"/>
                 <Button x:Name="ButtonRecord_5" Background="LightBlue" Content="SAVE" HorizontalAlignment="Left" Margin="195,4,0,0" VerticalAlignment="Top" Width="36" Height="21" Click="ButtonRecord_Click"/>
             </Grid>
             <Grid Margin="330,162,-105,162">
@@ -107,7 +107,7 @@
                 <Label x:Name="label_Title_Avis_6" Content="Chanson n°7" HorizontalAlignment="Left" Margin="41,2,0,0" VerticalAlignment="Top"  Width="79"/>
                 <Button x:Name="btn_minus_6" Content="-" HorizontalAlignment="Left" Margin="4,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
                 <Button x:Name="btn_plus_6" Content="+" HorizontalAlignment="Left" Margin="238,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
-                <Button x:Name="buttonPlay_6" Content="PLAY" HorizontalAlignment="Left" Margin="153,4,0,0" VerticalAlignment="Top" Width="37" Background="LightBlue" Click="ButtonPlay_Click"/>
+                <Button x:Name="buttonPlay_6" Content="PLAY" HorizontalAlignment="Left" Margin="153,4,0,0" VerticalAlignment="Top" Width="37" Background="LightBlue" Click="ButtonPlay_Click" ToolTipOpening="buttonPlay_1_ToolTipOpening"/>
                 <Button x:Name="ButtonRecord_6" Background="LightBlue" Content="SAVE" HorizontalAlignment="Left" Margin="195,4,0,0" VerticalAlignment="Top" Width="36" Height="21" Click="ButtonRecord_Click"/>
             </Grid>
             <Grid Margin="330,232,-105,92">
@@ -118,7 +118,7 @@
                 <Label x:Name="label_Title_Avis_7" Content="Chanson n°8" HorizontalAlignment="Left" Margin="41,2,0,0" VerticalAlignment="Top"  Width="79"/>
                 <Button x:Name="btn_minus_7" Content="-" HorizontalAlignment="Left" Margin="4,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
                 <Button x:Name="btn_plus_7" Content="+" HorizontalAlignment="Left" Margin="238,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
-                <Button x:Name="buttonPlay_7" Content="PLAY" HorizontalAlignment="Left" Margin="153,4,0,0" VerticalAlignment="Top" Width="37" Background="LightBlue" Click="ButtonPlay_Click"/>
+                <Button x:Name="buttonPlay_7" Content="PLAY" HorizontalAlignment="Left" Margin="153,4,0,0" VerticalAlignment="Top" Width="37" Background="LightBlue" Click="ButtonPlay_Click" ToolTipOpening="buttonPlay_1_ToolTipOpening"/>
                 <Button x:Name="ButtonRecord_7" Background="LightBlue" Content="SAVE" HorizontalAlignment="Left" Margin="195,4,0,0" VerticalAlignment="Top" Width="36" Height="21" Click="ButtonRecord_Click"/>
             </Grid>
             <Grid Margin="330,302,-105,22">
@@ -129,7 +129,7 @@
                 <Label x:Name="label_Title_Avis_8" Content="Chanson n°9" HorizontalAlignment="Left" Margin="41,2,0,0" VerticalAlignment="Top"  Width="79"/>
                 <Button x:Name="btn_minus_8" Content="-" HorizontalAlignment="Left" Margin="4,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
                 <Button x:Name="btn_plus_8" Content="+" HorizontalAlignment="Left" Margin="238,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
-                <Button x:Name="buttonPlay_8" Content="PLAY" HorizontalAlignment="Left" Margin="153,4,0,0" VerticalAlignment="Top" Width="37" Background="LightBlue" Click="ButtonPlay_Click"/>
+                <Button x:Name="buttonPlay_8" Content="PLAY" HorizontalAlignment="Left" Margin="153,4,0,0" VerticalAlignment="Top" Width="37" Background="LightBlue" Click="ButtonPlay_Click" ToolTipOpening="buttonPlay_1_ToolTipOpening"/>
                 <Button x:Name="ButtonRecord_8" Background="LightBlue" Content="SAVE" HorizontalAlignment="Left" Margin="195,4,0,0" VerticalAlignment="Top" Width="36" Height="21" Click="ButtonRecord_Click"/>
             </Grid>
             <Grid Margin="330,372,-10,55">
@@ -140,7 +140,7 @@
                 <Label x:Name="label_Title_Avis_9" Content="Chanson n°10" HorizontalAlignment="Left" Margin="41,2,0,0" VerticalAlignment="Top"  Width="84"/>
                 <Button x:Name="btn_minus_9" Content="-" HorizontalAlignment="Left" Margin="4,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
                 <Button x:Name="btn_plus_9" Content="+" HorizontalAlignment="Left" Margin="238,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
-                <Button x:Name="buttonPlay_9" Content="PLAY" HorizontalAlignment="Left" Margin="153,4,0,0" VerticalAlignment="Top" Width="37" Background="LightBlue" Click="ButtonPlay_Click"/>
+                <Button x:Name="buttonPlay_9" Content="PLAY" HorizontalAlignment="Left" Margin="153,4,0,0" VerticalAlignment="Top" Width="37" Background="LightBlue" Click="ButtonPlay_Click" ToolTipOpening="buttonPlay_1_ToolTipOpening"/>
                 <Button x:Name="ButtonRecord_9" Background="LightBlue" Content="SAVE" HorizontalAlignment="Left" Margin="195,4,0,0" VerticalAlignment="Top" Width="36" Height="21" Click="ButtonRecord_Click"/>
             </Grid>
 

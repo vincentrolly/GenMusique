@@ -485,5 +485,20 @@ namespace Gene_Musique.Interface
                 genMusique.SaveMutationEnvironnement(new int[]{debIntervalle,finIntervalle,mutation });
             }
         }
+
+        private void buttonPlay_0_GotFocus(object sender, RoutedEventArgs e)
+        {
+            
+            
+        }
+
+        private void buttonPlay_1_ToolTipOpening(object sender, ToolTipEventArgs e)
+        {
+            Button button = (Button)sender;
+            int index = int.Parse(button.Name.Split('_')[1]);
+            Individu individu = this.genMusique.GetPopulation()[index];
+            button.ToolTip = individu.nomChanson + " " + individu.auteur + BusinessLogique.InstrumentFixture.GetFixture()[index - 1];
+            
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace Gene_Musique.BusinessLogique
 {
     public class InstrumentFixture
     {
-        public string[] GetFixture()
+        public static  string[] GetFixture()
         {
             string[] fixture = new string[]
             {

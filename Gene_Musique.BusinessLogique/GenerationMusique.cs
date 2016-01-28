@@ -19,6 +19,7 @@ namespace Gene_Musique.BusinessLogique
         public const int TAUX_FUSION = 10;
         //private int[] intervalNote;
         private Individu[] population;
+        
         private const double TXCROSSOVER = 0.6;
         //private double crossover;
         private int _mutation;

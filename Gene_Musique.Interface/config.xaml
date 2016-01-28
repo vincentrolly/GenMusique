@@ -5,12 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Gene_Musique.Interface"
         mc:Ignorable="d"
-        Title="config" Height="203.38" Width="554.648">
+        Title="Configuration" Height="192.964" Width="508.6">
     <Grid>
-        <Button x:Name="button_save" Content="Save" Background="LightBlue" HorizontalAlignment="Left" Margin="369,146,0,0" VerticalAlignment="Top" Width="75" Click="button_save_Click"/>
-        <Button x:Name="button_Cancel" Content="Cancel" Background="LightBlue" HorizontalAlignment="Left" Margin="465,146,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBlock x:Name="textBlock_debintinst" Background="white" HorizontalAlignment="Left" Margin="42,37,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="32" Width="191"/>
-        <TextBlock x:Name="textBlock_finintinst" Background="White" HorizontalAlignment="Left" Margin="330,24,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="32" Width="191"/>
+        <Button x:Name="button_save" Content="Save" Background="LightBlue" HorizontalAlignment="Left" Margin="302,110,0,0" VerticalAlignment="Top" Width="75" Click="button_save_Click"/>
+        <Button x:Name="button_Cancel" Content="Cancel" Background="LightBlue" HorizontalAlignment="Left" Margin="387,110,0,0" VerticalAlignment="Top" Width="75" Click="button_Cancel_Click"/>
+        <Label x:Name="label" Content="Premier instrument" HorizontalAlignment="Left" Margin="16,10,0,0" VerticalAlignment="Top" Width="122"/>
+        <Label x:Name="label_Copy" Content="Dernier instrument" HorizontalAlignment="Left" Margin="179,10,0,0" VerticalAlignment="Top" Width="122"/>
+        <Label x:Name="label_Copy1" Content="Taux de mutation" HorizontalAlignment="Left" Margin="342,10,0,0" VerticalAlignment="Top" Width="122"/>
+        <TextBox x:Name="textBox_BeginIntervalInstrument" HorizontalAlignment="Left" Height="23" Margin="18,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textBox_EndIntervalInstrument" HorizontalAlignment="Left" Height="23" Margin="179,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textBox_TauxMutation" HorizontalAlignment="Left" Height="23" Margin="342,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>

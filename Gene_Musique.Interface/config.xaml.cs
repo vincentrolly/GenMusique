@@ -23,30 +23,43 @@ namespace Gene_Musique.Interface
     {
         public int debIntervalle = 20;
         public int finIntervalle = 160;
-        public config(ref int debIntervalle,ref int finIntervalle)
+        public int TauxMutation = 10;
+
+        public config(ref int debIntervalle, ref int finIntervalle, ref int tauxMutation)
         {
             InitializeComponent();
             this.debIntervalle = debIntervalle;
             this.finIntervalle = finIntervalle;
+            this.TauxMutation = tauxMutation;
         }
 
         private void button_save_Click(object sender, RoutedEventArgs e)
         {
-            int debutInter = 20;
-            int finInter = 160;
-            if(int.TryParse(this.textBlock_debintinst.Text, out debutInter)&&int.TryParse(this.textBlock_finintinst.Text,out finInter))
+            int debutInter = 32;
+            int finInter = 96;
+            int tauxMutation = 10;
+
+            if(int.TryParse(this.textBox_BeginIntervalInstrument.Text, out debutInter)
+             &&int.TryParse(this.textBox_EndIntervalInstrument.Text, out finInter)
+             &&int.TryParse(this.textBox_TauxMutation.Text, out tauxMutation))
             {
-                // Gene_Musique.Interface.Properties.Resources.debIntervalleInstr = textBlock_debintinst;
-                int[] intervalleInstrument = new int[] { debutInter, finInter };
-                XmlSerializer serializer =  new XmlSerializer(intervalleInstrument.GetType());
-                using (StreamWriter writer = new StreamWriter(Gene_Musique.Interface.Properties.Resources.config_xml))
-                {
-                    serializer.Serialize(writer, intervalleInstrument);
-                }
-                this.debIntervalle = debutInter;
-                this.finIntervalle = finInter;
-                
+                //int[] intervalleInstrument = new int[] { debutInter, finInter, tauxMutation};
+                if(0 <= debutInter && debutInter <= 127)
+                    this.debIntervalle = debutInter;
+
+                if (0 <= finInter && finInter <= 127)
+                    this.finIntervalle = finInter;
+
+                if(2 <= TauxMutation && tauxMutation > 20)
+                    this.TauxMutation = tauxMutation;
             }
+
+            this.Close();
+        }
+
+        private void button_Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

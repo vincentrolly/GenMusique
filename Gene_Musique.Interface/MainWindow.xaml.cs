@@ -232,7 +232,7 @@ namespace Gene_Musique.Interface
                     this.genMusique.SavePopulation(dlg.FileName);
                     genMusique.Accouplement();
                     generatePopulationFile();
-                    iNumberMusique++;
+                    iNumberGeneration++;
                 }
             }
             else if (msg == MessageBoxResult.No)
@@ -240,7 +240,7 @@ namespace Gene_Musique.Interface
                 stop_and_delete_file();
                 genMusique.Accouplement();
                 generatePopulationFile();
-                iNumberMusique++;
+                iNumberGeneration++;
             }
           labelNumberGeneration.Content = Math.Round((double)iNumberGeneration, 0).ToString();
         }
@@ -477,7 +477,8 @@ namespace Gene_Musique.Interface
         {
             int debIntervalle = 0;
             int finIntervalle = 0;
-            config window = new config(ref debIntervalle,ref finIntervalle);
+            int tauxMutation = 0;
+            config window = new config(ref debIntervalle,ref finIntervalle, ref tauxMutation);
             window.ShowDialog();
         }
     }

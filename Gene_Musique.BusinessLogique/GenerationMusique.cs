@@ -31,9 +31,11 @@ namespace Gene_Musique.BusinessLogique
 
         public GenerationMusique()
         {
-           // LoadConfigurationEnvironnement();
+            // LoadConfigurationEnvironnement();
             //On initialise un tableau avec 10 emplacement
             this.population = new Individu[NOMBRE_INDIVIDU];
+                this.debutIntervalleInstrument = 1;
+            this.finIntervalleInstrument = 127;
             //On génère la première génèration
             generationInitial();
         }

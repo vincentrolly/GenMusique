@@ -25,6 +25,7 @@ namespace Gene_Musique.BusinessLogique
         private int _mutation;
         private int _deb_intervalle_instrument;
         private int _fin_intervalle_instrument;
+        public Individu[] GetFullPopulation { get { return this.population; } set { this.population = value; } }
         public int debutIntervalleInstrument { get { return this._deb_intervalle_instrument; } set { this._deb_intervalle_instrument = value; } }
         public int finIntervalleInstrument { get { return _fin_intervalle_instrument; } set { this._fin_intervalle_instrument = value; } }
         public int mutation { get { return this._mutation; } set { this._mutation = value; } }

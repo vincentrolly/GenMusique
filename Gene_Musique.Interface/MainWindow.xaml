@@ -23,7 +23,7 @@
                     <MenuItem x:Name="save_as" Header="Save As" Click="save_as_Click"/>
                     <MenuItem Header="Quit"/>
                 </MenuItem>
-                <MenuItem Header="Configuration" />
+                <MenuItem x:Name="btn_config" Header="Configuration" Click="btn_config_Click" />
                 <MenuItem Header="?" />
             </Menu>
             <Grid Margin="10,24,0,334" HorizontalAlignment="Left" Width="112">

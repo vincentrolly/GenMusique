@@ -31,6 +31,9 @@ namespace Gene_Musique.Interface
             this.debIntervalle = debIntervalle;
             this.finIntervalle = finIntervalle;
             this.TauxMutation = tauxMutation;
+            textBox_BeginIntervalInstrument.Text = debIntervalle.ToString();
+            textBox_EndIntervalInstrument.Text = finIntervalle.ToString();
+            textBox_TauxMutation.Text = tauxMutation.ToString();
         }
 
         private void button_save_Click(object sender, RoutedEventArgs e)

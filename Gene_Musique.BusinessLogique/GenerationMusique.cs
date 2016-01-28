@@ -101,6 +101,7 @@ namespace Gene_Musique.BusinessLogique
             var xs = new XmlSerializer(typeof(Individu[]));
             this.population = (Individu[])xs.Deserialize(xr);
         }
+        
     }
 } 
  

@@ -475,7 +475,10 @@ namespace Gene_Musique.Interface
 
         private void btn_config_Click(object sender, RoutedEventArgs e)
         {
-            
+            int debIntervalle = 0;
+            int finIntervalle = 0;
+            config window = new config(ref debIntervalle,ref finIntervalle);
+            window.ShowDialog();
         }
     }
 }

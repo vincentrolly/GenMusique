@@ -61,6 +61,15 @@ namespace Gene_Musique.Interface.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à .
+        /// </summary>
+        public static string config_xml {
+            get {
+                return ResourceManager.GetString("config_xml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à 0.
         /// </summary>
         public static string debIntervalleInstr {

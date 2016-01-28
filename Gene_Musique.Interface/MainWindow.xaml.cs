@@ -25,7 +25,7 @@ namespace Gene_Musique.Interface
     {
         MediaPlayer mplayer;
         Boolean isPlaying;
-        int iNumberMusique = 0;
+        int iNumberGeneration = 0;
         //static Boolean Avis;
         static int tempo = 460;
         static int lengthNote = 25;
@@ -242,7 +242,7 @@ namespace Gene_Musique.Interface
                 generatePopulationFile();
                 iNumberMusique++;
             }
-          labelNumberGeneration.Content = Math.Round((double)iNumberMusique, 0).ToString();
+          labelNumberGeneration.Content = Math.Round((double)iNumberGeneration, 0).ToString();
         }
 
         private void sliderAvis_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)

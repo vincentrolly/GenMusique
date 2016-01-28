@@ -52,7 +52,7 @@
                 <Label x:Name="label_Title_Avis_1" Content="Chanson n°2" HorizontalAlignment="Left" Margin="41,2,0,0" VerticalAlignment="Top"  Width="79"/>
                 <Button x:Name="btn_minus_1" Content="-" HorizontalAlignment="Left" Margin="4,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
                 <Button x:Name="btn_plus_1" Content="+" HorizontalAlignment="Left" Margin="238,10,0,0" VerticalAlignment="Top" Width="37" Height="43" Click="btn_Avis_Click"/>
-                <Button x:Name="buttonPlay_1" Content="PLAY" HorizontalAlignment="Left" Margin="153,4,0,0" VerticalAlignment="Top" Width="37" Background="LightBlue" Click="ButtonPlay_Click" ToolTipOpening="buttonPlay_1_ToolTipOpening"/>
+                <Button x:Name="buttonPlay_1" Content="PLAY" HorizontalAlignment="Left" Margin="153,4,0,0" VerticalAlignment="Top" Width="37" Background="LightBlue" Click="ButtonPlay_Click" ToolTipOpening="buttonPlay_1_ToolTipOpening" MouseEnter="buttonPlay_1_GotFocus"/>
                 <Button x:Name="ButtonRecord_1" Background="LightBlue" Content="SAVE" HorizontalAlignment="Left" Margin="195,4,0,0" VerticalAlignment="Top" Width="36" Height="21" Click="ButtonRecord_Click"/>
             </Grid>
             <Grid Margin="10,232,215,92">

@@ -562,11 +562,20 @@ namespace Gene_Musique.Interface
 
         private void buttonPlay_1_ToolTipOpening(object sender, ToolTipEventArgs e)
         {
+           
+            
+        }
+
+        private void buttonPlay_1_GotFocus(object sender, RoutedEventArgs e)
+        {
+
             Button button = (Button)sender;
             int index = int.Parse(button.Name.Split('_')[1]);
             Individu individu = this.genMusique.GetPopulation()[index];
-            button.ToolTip = individu.nomChanson + " " + individu.auteur + BusinessLogique.InstrumentFixture.GetFixture()[index - 1];
-            
+            button.ToolTip = individu.nomChanson + " " + individu.auteur +" "+ BusinessLogique.InstrumentFixture.GetFixture()[index - 1];
+
+
+            //ToolTipProperty t = (ToolTipProperty)button.ToolTip;
         }
     }
 }

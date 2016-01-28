@@ -61,7 +61,7 @@ namespace Gene_Musique.BusinessLogique.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à .
+        ///   Recherche une chaîne localisée semblable à &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;.
         /// </summary>
         internal static string config_xml {
             get {

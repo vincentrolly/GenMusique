@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
@@ -29,7 +31,7 @@ namespace Gene_Musique.BusinessLogique
 
         public GenerationMusique()
         {
-            LoadConfigurationEnvironnement();
+           // LoadConfigurationEnvironnement();
             //On initialise un tableau avec 10 emplacement
             this.population = new Individu[NOMBRE_INDIVIDU];
             //On génère la première génèration
@@ -116,22 +118,41 @@ namespace Gene_Musique.BusinessLogique
         /// <param name="filename"></param>
         public void LoadConfigurationEnvironnement()
         {
-
-            var xr = new XmlTextReader(Gene_Musique.BusinessLogique.Properties.Resources.config_xml);
-            var xs = new XmlSerializer(typeof(int[]));
-            int [] config = (int[])xs.Deserialize(xr);
-            if (config != null && config.Count() == 3)
+            string directory = Path.Combine("C:\\",System.Environment.SpecialFolder.CommonProgramFilesX86.ToString(),"generationmusique");
+            if(!Directory.Exists(directory))
             {
+                Directory.CreateDirectory(directory);
+            }
+            string path = directory + "\\config.xml";
+            if (File.Exists(path))
+            {
+
+                var xr = new XmlTextReader(path);
+                var xs = new XmlSerializer(typeof(int[]));
+                int[] config = (int[])xs.Deserialize(xr);
+
+
                 this.debutIntervalleInstrument = config[0];
                 this.finIntervalleInstrument = config[1];
                 this.mutation = config[2];
             }
             else
             {
-                this.debutIntervalleInstrument = 0;
-                this.finIntervalleInstrument = 127;
-                this.mutation = 5;
+                int[] config = new int[3] { 1, 127, 3 };
+                XmlWriter.Create(File.Create(path)).Close();
+                XmlSerializer serializer = new XmlSerializer(config.GetType());
+
+                using (StreamWriter writer = new StreamWriter(path))
+                {
+                    serializer.Serialize(writer, config);
+                }
+
             }
+            
+            
+           
+                
+            
             
         }
         public void SaveMutationEnvironnement(int[] configToSave)
@@ -139,14 +160,31 @@ namespace Gene_Musique.BusinessLogique
             this.debutIntervalleInstrument = configToSave[0];
             this.finIntervalleInstrument = configToSave[1];
             this.mutation = configToSave[2];
+            string path = Environment.SpecialFolder.CommonDocuments + "\\config.xml";
+            XmlWriter.Create(File.Create(path)).Close();
+
             XmlSerializer serializer = new XmlSerializer(configToSave.GetType());
-            using (StreamWriter writer = new StreamWriter(Gene_Musique.BusinessLogique.Properties.Resources.config_xml))
+            using (StreamWriter writer = new StreamWriter(path))
             {
                 serializer.Serialize(writer, configToSave);
             }
         }
+        public static string GetEmbeddedResourceNames()
+        {
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            List<string> resourceNames = new List<string>(assembly.GetManifestResourceNames());
 
-        
+            string nom = "config";
+            string resourcePath = resourceNames.FirstOrDefault(r => r.Contains(nom));
+            return resourcePath;
+
+        }
+        public static Stream GetEmbeddedResourceStream(string resourceName)
+        {
+            return Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
+        }
+
+
     }
 } 
  

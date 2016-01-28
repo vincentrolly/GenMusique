@@ -296,7 +296,7 @@ namespace Gene_Musique.Interface
         private void SavePopulationXml()
         {
             Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-            dlg.FileName = "generationMidi" + DateTime.Now.ToShortDateString(); // Default file name
+            dlg.FileName = "generationMidi" + DateTime.Now.ToString("ddmmyy")+iNumberGeneration+".xml"; // Default file name
             dlg.DefaultExt = ".xml"; // Default file extension
             dlg.Filter = "Xml document (.xml)|*.xml"; // Filter files by extension
 
@@ -479,7 +479,8 @@ namespace Gene_Musique.Interface
             int finIntervalle = 0;
             int mutation = 0;
             config window = new config(ref debIntervalle,ref finIntervalle, ref mutation);
-           if( window.ShowDialog()== true)
+            bool? res = window.ShowDialog();
+           if( res== true)
             {
                 genMusique.SaveMutationEnvironnement(new int[]{debIntervalle,finIntervalle,mutation });
             }

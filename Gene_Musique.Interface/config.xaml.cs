@@ -53,7 +53,7 @@ namespace Gene_Musique.Interface
                 if(2 <= TauxMutation && tauxMutation > 20)
                     this.TauxMutation = tauxMutation;
             }
-
+            this.DialogResult = true;
             this.Close();
         }
 

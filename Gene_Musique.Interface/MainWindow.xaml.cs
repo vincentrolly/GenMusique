@@ -56,9 +56,10 @@ namespace Gene_Musique.Interface
             // récupération du nombre d'individu
             numberIndividu = genMusique.GetNumberIndividu();
             generatePopulationFile();
-            
+
 
             //  Avis par défaut
+            labelAvis_0.Content = Math.Round(slider_0.Value, 0).ToString();
             labelAvis_1.Content = Math.Round(slider_1.Value, 0).ToString();
             labelAvis_2.Content = Math.Round(slider_2.Value, 0).ToString();
             labelAvis_3.Content = Math.Round(slider_3.Value, 0).ToString();
@@ -67,6 +68,7 @@ namespace Gene_Musique.Interface
             labelAvis_6.Content = Math.Round(slider_6.Value, 0).ToString();
             labelAvis_7.Content = Math.Round(slider_7.Value, 0).ToString();
             labelAvis_8.Content = Math.Round(slider_8.Value, 0).ToString();
+            labelAvis_9.Content = Math.Round(slider_9.Value, 0).ToString();
 
             //  Tempo par défaut
             tempo = (int)Math.Round(sliderTempo.Value, 0);
@@ -248,7 +250,9 @@ namespace Gene_Musique.Interface
         private void sliderAvis_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             Slider slider = sender as Slider;
-            if(slider == slider_1)
+            if (slider == slider_0)
+                labelAvis_0.Content = Math.Round(slider_0.Value, 0).ToString();
+            else if (slider == slider_1)
                 labelAvis_1.Content = Math.Round(slider_1.Value, 0).ToString();
             else if (slider == slider_2)
                 labelAvis_2.Content = Math.Round(slider_2.Value, 0).ToString();
@@ -264,6 +268,8 @@ namespace Gene_Musique.Interface
                 labelAvis_7.Content = Math.Round(slider_7.Value, 0).ToString();
             else if (slider == slider_8)
                 labelAvis_8.Content = Math.Round(slider_8.Value, 0).ToString();
+            else if (slider == slider_9)
+                labelAvis_9.Content = Math.Round(slider_9.Value, 0).ToString();
         }
 
         private void sliderTempo_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -310,8 +316,32 @@ namespace Gene_Musique.Interface
 
         private void btn_Avis_Click(object sender, RoutedEventArgs e)
         {
+            Individu[] population = this.genMusique.GetFullPopulation;
             Button button = sender as Button;
-            if(button == btn_plus_1)
+
+            if (button == btn_plus_0)
+            {
+                int value_avis = Convert.ToInt32(labelAvis_0.Content);
+                if (value_avis < 10)
+                {
+                    value_avis++;
+                    labelAvis_0.Content = value_avis.ToString();
+                    slider_0.Value = (double)value_avis;
+                }
+                population[0].notation = value_avis;
+            }
+            else if (button == btn_minus_0)
+            {
+                int value_avis = Convert.ToInt32(labelAvis_0.Content);
+                if (value_avis > 0)
+                {
+                    value_avis--;
+                    labelAvis_0.Content = value_avis.ToString();
+                    slider_0.Value = (double)value_avis;
+                }
+                population[0].notation = value_avis;
+            }
+            else if (button == btn_plus_1)
             {
                 int value_avis = Convert.ToInt32(labelAvis_1.Content);
                 if (value_avis < 10)
@@ -320,6 +350,7 @@ namespace Gene_Musique.Interface
                     labelAvis_1.Content = value_avis.ToString();
                     slider_1.Value = (double)value_avis;
                 }
+                population[1].notation = value_avis;
             }
             else if (button == btn_minus_1)
             {
@@ -330,6 +361,7 @@ namespace Gene_Musique.Interface
                     labelAvis_1.Content = value_avis.ToString();
                     slider_1.Value = (double)value_avis;
                 }
+                population[1].notation = value_avis;
             }
             else if (button == btn_plus_2)
             {
@@ -340,6 +372,7 @@ namespace Gene_Musique.Interface
                     labelAvis_2.Content = value_avis.ToString();
                     slider_2.Value = (double)value_avis;
                 }
+                population[2].notation = value_avis;
             }
             else if (button == btn_minus_2)
             {
@@ -350,6 +383,7 @@ namespace Gene_Musique.Interface
                     labelAvis_2.Content = value_avis.ToString();
                     slider_2.Value = (double)value_avis;
                 }
+                population[2].notation = value_avis;
             }
             else if (button == btn_plus_3)
             {
@@ -360,6 +394,7 @@ namespace Gene_Musique.Interface
                     labelAvis_3.Content = value_avis.ToString();
                     slider_3.Value = (double)value_avis;
                 }
+                population[3].notation = value_avis;
             }
             else if (button == btn_minus_3)
             {
@@ -370,6 +405,7 @@ namespace Gene_Musique.Interface
                     labelAvis_3.Content = value_avis.ToString();
                     slider_3.Value = (double)value_avis;
                 }
+                population[3].notation = value_avis;
             }
             else if (button == btn_plus_4)
             {
@@ -380,6 +416,7 @@ namespace Gene_Musique.Interface
                     labelAvis_4.Content = value_avis.ToString();
                     slider_4.Value = (double)value_avis;
                 }
+                population[4].notation = value_avis;
             }
             else if (button == btn_minus_4)
             {
@@ -390,6 +427,7 @@ namespace Gene_Musique.Interface
                     labelAvis_4.Content = value_avis.ToString();
                     slider_4.Value = (double)value_avis;
                 }
+                population[4].notation = value_avis;
             }
             else if (button == btn_plus_5)
             {
@@ -400,6 +438,7 @@ namespace Gene_Musique.Interface
                     labelAvis_5.Content = value_avis.ToString();
                     slider_5.Value = (double)value_avis;
                 }
+                population[5].notation = value_avis;
             }
             else if (button == btn_minus_5)
             {
@@ -410,6 +449,7 @@ namespace Gene_Musique.Interface
                     labelAvis_5.Content = value_avis.ToString();
                     slider_5.Value = (double)value_avis;
                 }
+                population[5].notation = value_avis;
             }
             else if (button == btn_plus_6)
             {
@@ -420,6 +460,7 @@ namespace Gene_Musique.Interface
                     labelAvis_6.Content = value_avis.ToString();
                     slider_6.Value = (double)value_avis;
                 }
+                population[6].notation = value_avis;
             }
             else if (button == btn_minus_6)
             {
@@ -430,6 +471,7 @@ namespace Gene_Musique.Interface
                     labelAvis_6.Content = value_avis.ToString();
                     slider_6.Value = (double)value_avis;
                 }
+                population[6].notation = value_avis;
             }
             else if (button == btn_plus_7)
             {
@@ -440,6 +482,7 @@ namespace Gene_Musique.Interface
                     labelAvis_7.Content = value_avis.ToString();
                     slider_7.Value = (double)value_avis;
                 }
+                population[7].notation = value_avis;
             }
             else if (button == btn_minus_7)
             {
@@ -450,6 +493,7 @@ namespace Gene_Musique.Interface
                     labelAvis_7.Content = value_avis.ToString();
                     slider_7.Value = (double)value_avis;
                 }
+                population[7].notation = value_avis;
             }
             else if (button == btn_plus_8)
             {
@@ -460,6 +504,7 @@ namespace Gene_Musique.Interface
                     labelAvis_8.Content = value_avis.ToString();
                     slider_8.Value = (double)value_avis;
                 }
+                population[8].notation = value_avis;
             }
             else if (button == btn_minus_8)
             {
@@ -470,6 +515,29 @@ namespace Gene_Musique.Interface
                     labelAvis_8.Content = value_avis.ToString();
                     slider_8.Value = (double)value_avis;
                 }
+                population[8].notation = value_avis;
+            }
+            else if (button == btn_plus_9)
+            {
+                int value_avis = Convert.ToInt32(labelAvis_9.Content);
+                if (value_avis < 10)
+                {
+                    value_avis++;
+                    labelAvis_9.Content = value_avis.ToString();
+                    slider_9.Value = (double)value_avis;
+                }
+                population[9].notation = value_avis;
+            }
+            else if (button == btn_minus_9)
+            {
+                int value_avis = Convert.ToInt32(labelAvis_9.Content);
+                if (value_avis > 0)
+                {
+                    value_avis--;
+                    labelAvis_9.Content = value_avis.ToString();
+                    slider_9.Value = (double)value_avis;
+                }
+                population[9].notation = value_avis;
             }
         }
 

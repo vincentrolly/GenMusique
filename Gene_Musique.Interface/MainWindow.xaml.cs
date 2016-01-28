@@ -25,7 +25,7 @@ namespace Gene_Musique.Interface
     {
         MediaPlayer mplayer;
         Boolean isPlaying;
-        int iNumberMusique = 0;
+        int iNumberGeneration = 0;
         //static Boolean Avis;
         static int tempo = 460;
         static int lengthNote = 25;
@@ -232,7 +232,7 @@ namespace Gene_Musique.Interface
                     this.genMusique.SavePopulation(dlg.FileName);
                     genMusique.Accouplement();
                     generatePopulationFile();
-                    iNumberMusique = 0;
+                    iNumberGeneration = 0;
                 }
             }
             else if (msg == MessageBoxResult.No)
@@ -240,9 +240,9 @@ namespace Gene_Musique.Interface
                 stop_and_delete_file();
                 genMusique.Accouplement();
                 generatePopulationFile();
-                iNumberMusique = 0;
+                iNumberGeneration = 0;
             }
-          labelNumberGeneration.Content = Math.Round((double)iNumberMusique, 0).ToString();
+          labelNumberGeneration.Content = Math.Round((double)iNumberGeneration, 0).ToString();
         }
 
         private void sliderAvis_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)

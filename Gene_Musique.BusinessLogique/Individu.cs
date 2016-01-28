@@ -81,8 +81,11 @@ namespace Gene_Musique.BusinessLogique
             this.notation = 5;
             this.typeInstrument = typeInstrument;
         }
-
-        public Individu GetEnfantMuter()
+        /// <summary>
+        /// La vie est plein de mystère, un parent peut donner un enfant qui ressemblera légerement à son père-mère
+        /// </summary>
+        /// <returns></returns>
+        public Individu GetEnfantMuter(int mutation)
         {
             randomizerNote = new Random();
             int[] notesDeMusiqueMuter = new int[NumberNote];
@@ -90,12 +93,17 @@ namespace Gene_Musique.BusinessLogique
 
             for (int i = 0; i < NumberNote; i++)
             {
-                txMutation = randomizerNote.Next(-5, 5);
+                txMutation = randomizerNote.Next(-mutation, mutation);
                 notesDeMusiqueMuter[i] = this.notesMusique[i] + txMutation;
             }
             return new Individu(notesDeMusiqueMuter, this.typeInstrument);
         }
-
+        /// <summary>
+        /// Deux parent qui s'aiment donnent un enfant qui aura des propriété de ses deux parents selon le taux de fusion et la parent dominant
+        /// </summary>
+        /// <param name="secondParent"></param>
+        /// <param name="tauxFusion"></param>
+        /// <returns></returns>
         public Individu GetEnfantNaturel(Individu secondParent, int tauxFusion)
         {
             randomizerNote = new Random();

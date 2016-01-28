@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Gene_Musique.Interface.Properties {
+namespace Gene_Musique.BusinessLogique.Properties {
     using System;
     
     
@@ -22,7 +22,7 @@ namespace Gene_Musique.Interface.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources {
+    internal class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,10 +36,10 @@ namespace Gene_Musique.Interface.Properties {
         ///   Retourne l'instance ResourceManager mise en cache utilisée par cette classe.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Gene_Musique.Interface.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Gene_Musique.BusinessLogique.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace Gene_Musique.Interface.Properties {
         ///   les recherches de ressources à l'aide de cette classe de ressource fortement typée.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,20 +61,11 @@ namespace Gene_Musique.Interface.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à 0.
+        ///   Recherche une chaîne localisée semblable à .
         /// </summary>
-        public static string debIntervalleInstr {
+        internal static string config_xml {
             get {
-                return ResourceManager.GetString("debIntervalleInstr", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à 160.
-        /// </summary>
-        public static string finInterValleInstr {
-            get {
-                return ResourceManager.GetString("finInterValleInstr", resourceCulture);
+                return ResourceManager.GetString("config_xml", resourceCulture);
             }
         }
     }

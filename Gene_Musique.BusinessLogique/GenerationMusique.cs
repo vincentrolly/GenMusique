@@ -19,12 +19,20 @@ namespace Gene_Musique.BusinessLogique
         private Individu[] population;
         private const double TXCROSSOVER = 0.6;
         //private double crossover;
-        private double mutation;
+        private int _mutation;
+        private int _deb_intervalle_instrument;
+        private int _fin_intervalle_instrument;
+        public int debutIntervalleInstrument { get { return this._deb_intervalle_instrument; } set { this._deb_intervalle_instrument = value; } }
+        public int finIntervalleInstrument { get { return _fin_intervalle_instrument; } set { this._fin_intervalle_instrument = value; } }
+        public int mutation { get { return this._mutation; } set { this._mutation = value; } }
         private static Random randomizer = new Random();
 
         public GenerationMusique()
         {
+            LoadConfigurationEnvironnement();
+            //On initialise un tableau avec 10 emplacement
             this.population = new Individu[NOMBRE_INDIVIDU];
+            //On génère la première génèration
             generationInitial();
         }
 
@@ -41,7 +49,7 @@ namespace Gene_Musique.BusinessLogique
         public void generationInitial()
         {
             int[] intervalNote = new int[2] { 30, 100 };
-            int[] intervalInstrument = new int[2] { 0, 127 };
+            int[] intervalInstrument = new int[2] { this.debutIntervalleInstrument, this.finIntervalleInstrument };
 
             for (int i = 0; i < NOMBRE_INDIVIDU; i++)
             {
@@ -57,9 +65,10 @@ namespace Gene_Musique.BusinessLogique
             {
                 Individu[] individuSelectionne = SelectionCouple();
                 Individu enfant = null;
+                int[] intervalleInstrument = new int[] { this.debutIntervalleInstrument, this.finIntervalleInstrument };
 
                 if (individuSelectionne.Length == 1)
-                     enfant = individuSelectionne[0].GetEnfantMuter();
+                     enfant = individuSelectionne[0].GetEnfantMuter(mutation);
                 else
                     enfant = individuSelectionne[0].GetEnfantNaturel(individuSelectionne[1],TAUX_FUSION);
 
@@ -101,6 +110,42 @@ namespace Gene_Musique.BusinessLogique
             var xs = new XmlSerializer(typeof(Individu[]));
             this.population = (Individu[])xs.Deserialize(xr);
         }
+        /// <summary>
+        /// Méthode permettant de charger le fichier de configuration
+        /// </summary>
+        /// <param name="filename"></param>
+        public void LoadConfigurationEnvironnement()
+        {
+
+            var xr = new XmlTextReader(Gene_Musique.BusinessLogique.Properties.Resources.config_xml);
+            var xs = new XmlSerializer(typeof(int[]));
+            int [] config = (int[])xs.Deserialize(xr);
+            if (config != null && config.Count() == 3)
+            {
+                this.debutIntervalleInstrument = config[0];
+                this.finIntervalleInstrument = config[1];
+                this.mutation = config[2];
+            }
+            else
+            {
+                this.debutIntervalleInstrument = 0;
+                this.finIntervalleInstrument = 127;
+                this.mutation = 5;
+            }
+            
+        }
+        public void SaveMutationEnvironnement(int[] configToSave)
+        {
+            this.debutIntervalleInstrument = configToSave[0];
+            this.finIntervalleInstrument = configToSave[1];
+            this.mutation = configToSave[2];
+            XmlSerializer serializer = new XmlSerializer(configToSave.GetType());
+            using (StreamWriter writer = new StreamWriter(Gene_Musique.BusinessLogique.Properties.Resources.config_xml))
+            {
+                serializer.Serialize(writer, configToSave);
+            }
+        }
+
         
     }
 } 

@@ -218,7 +218,7 @@ namespace Gene_Musique.Interface
             {
 
                 Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-                dlg.FileName = "generationMidi" + DateTime.Now.ToShortDateString(); // Default file name
+                dlg.FileName = "generationMidi" + DateTime.Now.ToString("ddmmyy"); // Default file name
                 dlg.DefaultExt = ".xml"; // Default file extension
                 dlg.Filter = "Xml document (.xml)|*.xml"; // Filter files by extension
 
@@ -477,9 +477,12 @@ namespace Gene_Musique.Interface
         {
             int debIntervalle = 0;
             int finIntervalle = 0;
-            int tauxMutation = 0;
-            config window = new config(ref debIntervalle,ref finIntervalle, ref tauxMutation);
-            window.ShowDialog();
+            int mutation;
+            config window = new config(ref debIntervalle,ref finIntervalle);
+           if( window.ShowDialog()== true)
+            {
+                genMusique.SaveMutationEnvironnement(new int[]{debIntervalle,finIntervalle,mutation });
+            }
         }
     }
 }

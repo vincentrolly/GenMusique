@@ -477,8 +477,8 @@ namespace Gene_Musique.Interface
         {
             int debIntervalle = 0;
             int finIntervalle = 0;
-            int mutation;
-            config window = new config(ref debIntervalle,ref finIntervalle);
+            int mutation = 0;
+            config window = new config(ref debIntervalle,ref finIntervalle, ref mutation);
            if( window.ShowDialog()== true)
             {
                 genMusique.SaveMutationEnvironnement(new int[]{debIntervalle,finIntervalle,mutation });

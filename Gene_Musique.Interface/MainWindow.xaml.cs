@@ -113,8 +113,8 @@ namespace Gene_Musique.Interface
             mplayer.Close();
             isPlaying = false;
             deleteFile();
-            
         }
+
         private void deleteFile()
         {
             string[] files = Directory.GetFiles(directory);
@@ -122,7 +122,6 @@ namespace Gene_Musique.Interface
             {
                 File.Delete(filename);
             }
-
         }
 
         private void ButtonRecord_Click(object sender, RoutedEventArgs e)
@@ -181,6 +180,7 @@ namespace Gene_Musique.Interface
             objWriter = null;
         }
 
+        //  Lecture de la piste de l'individu
         private void PlayMusic(int INumberMusic)
         {
             mplayer.Open(new Uri(directory + "/piste" + INumberMusic + ".midi", UriKind.Absolute));
@@ -188,12 +188,12 @@ namespace Gene_Musique.Interface
             mplayer.Play();
         }
 
+        //  Callback d'appui sur le bouton play
         private void ButtonPlay_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
             int INumberMusic = int.Parse(button.Name.Split('_')[1]);
 
-            //if(button.Content)
             // s'il y a un fichier en cours de lecture on l'arrête 
             if (isPlaying == true)
                 Stop_music();
@@ -205,6 +205,7 @@ namespace Gene_Musique.Interface
             }
         }
 
+        //  Callback d'arrêt de la lecture de la musique
         private void Stop_music()
         {
             mplayer.Stop();
@@ -212,13 +213,13 @@ namespace Gene_Musique.Interface
             isPlaying = false;
         }
 
+        //  Callback du bouton next (save generation)
         private void ButtonNext_Click(object sender, RoutedEventArgs e)
         {
-
             MessageBoxResult msg = MessageBox.Show("Voulez vous sauvegarder?", "Voulez vous sauvegarder cette génération", MessageBoxButton.YesNoCancel);
+
             if (msg == MessageBoxResult.Yes)
             {
-
                 Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
                 dlg.FileName = "generationMidi" + DateTime.Now.ToString("ddmmyy"); // Default file name
                 dlg.DefaultExt = ".xml"; // Default file extension
@@ -247,43 +248,90 @@ namespace Gene_Musique.Interface
           labelNumberGeneration.Content = Math.Round((double)iNumberGeneration, 0).ToString();
         }
 
+        //  Callback de modification de la value d'un slider
         private void sliderAvis_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            //Individu[] population = this.genMusique.GetFullPopulation;
+            //int value_avis;
+
             Slider slider = sender as Slider;
             if (slider == slider_0)
+            {
                 labelAvis_0.Content = Math.Round(slider_0.Value, 0).ToString();
+                //value_avis = Convert.ToInt32(labelAvis_0.Content);
+                //population[0].notation = value_avis;
+            }
             else if (slider == slider_1)
+            {
                 labelAvis_1.Content = Math.Round(slider_1.Value, 0).ToString();
+                //value_avis = Convert.ToInt32(labelAvis_1.Content);
+                //population[1].notation = value_avis;
+            }
             else if (slider == slider_2)
+            {
                 labelAvis_2.Content = Math.Round(slider_2.Value, 0).ToString();
+                //value_avis = Convert.ToInt32(labelAvis_2.Content);
+                //population[2].notation = value_avis;
+            }
             else if (slider == slider_3)
+            {
                 labelAvis_3.Content = Math.Round(slider_3.Value, 0).ToString();
+                //value_avis = Convert.ToInt32(labelAvis_3.Content);
+                //population[3].notation = value_avis;
+            }
             else if (slider == slider_4)
+            {
                 labelAvis_4.Content = Math.Round(slider_4.Value, 0).ToString();
+                //value_avis = Convert.ToInt32(labelAvis_4.Content);
+                //population[4].notation = value_avis;
+            }
             else if (slider == slider_5)
+            {
                 labelAvis_5.Content = Math.Round(slider_5.Value, 0).ToString();
+                //value_avis = Convert.ToInt32(labelAvis_5.Content);
+                //population[5].notation = value_avis;
+            }
             else if (slider == slider_6)
+            {
                 labelAvis_6.Content = Math.Round(slider_6.Value, 0).ToString();
+                //value_avis = Convert.ToInt32(labelAvis_6.Content);
+                //population[6].notation = value_avis;
+            }
             else if (slider == slider_7)
+            {
                 labelAvis_7.Content = Math.Round(slider_7.Value, 0).ToString();
+                //value_avis = Convert.ToInt32(labelAvis_7.Content);
+                //population[7].notation = value_avis;
+            }
             else if (slider == slider_8)
+            {
                 labelAvis_8.Content = Math.Round(slider_8.Value, 0).ToString();
+                //value_avis = Convert.ToInt32(labelAvis_8.Content);
+                //population[8].notation = value_avis;
+            }
             else if (slider == slider_9)
+            {
                 labelAvis_9.Content = Math.Round(slider_9.Value, 0).ToString();
+                //value_avis = Convert.ToInt32(labelAvis_9.Content);
+                //population[9].notation = value_avis;
+            }
         }
 
+        //  Callback pour le slider tempo
         private void sliderTempo_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             tempo = (int)Math.Round(sliderTempo.Value, 0);
             labelTempo.Content = tempo.ToString();
         }
 
+        //  Callback pour le slider longueur de la note
         private void sliderLengthNote_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             lengthNote = (int)Math.Round(sliderLengthNote.Value, 0);
             labelLengthSound.Content = lengthNote.ToString();
         }
 
+        //  Callback pour l'open d'une génération
         private void open_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
@@ -299,6 +347,8 @@ namespace Gene_Musique.Interface
         {
             SavePopulationXml();
         }
+
+        //  Sauvegarde de la population sous forme d'un fichier xml
         private void SavePopulationXml()
         {
             Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
@@ -314,6 +364,7 @@ namespace Gene_Musique.Interface
                 this.genMusique.SavePopulation(dlg.FileName);
         }
 
+        //  Callback du bouton avis
         private void btn_Avis_Click(object sender, RoutedEventArgs e)
         {
             Individu[] population = this.genMusique.GetFullPopulation;
@@ -541,6 +592,7 @@ namespace Gene_Musique.Interface
             }
         }
 
+        //  Callback du bouton config
         private void btn_config_Click(object sender, RoutedEventArgs e)
         {
             int debIntervalle = 0;
